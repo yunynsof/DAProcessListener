@@ -1,0 +1,1723 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 编辑使用 XMLSpy v2006 U (http://www.altova.com) 由 any (any) -->
+<!-- 编辑使用 XMLSpy v2006 U (http://www.altova.com) 由 any (any) -->
+<!-- 编辑使用 XMLSpy v2006 U (http://www.altova.com) 由 any (any) -->
+<!-- 编辑使用 XMLSpy v2006 U (http://www.altova.com) 由 any (any) -->
+<!-- 编辑使用 XMLSpy v2006 U (http://www.altova.com) 由 any (any) -->
+<!-- 编辑使用 XMLSpy v2006 U (http://www.altova.com) 由 any (any) -->
+<!-- 编辑使用 XMLSpy v2006 U (http://www.altova.com) 由 any (any) -->
+<!-- edited with XMLSpy v2011 (http://www.altova.com) by TeaM DJiNN (TeaM DJiNN) -->
+<!-- 编辑使用 XMLSpy v2006 U (http://www.altova.com) 由 any (any) -->
+<!-- 编辑使用 XMLSpy v2006 U (http://www.altova.com) 由 any (any) -->
+<!-- 编辑使用 XMLSpy v2006 U (http://www.altova.com) 由 any (any) -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<xsd:element name="BILL_INFO">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="XML_INFO" >
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="RELEASE" type="xsd:string" />
+							<xsd:element name="RELEASE_DT" type="xsd:string" />
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="OPER_INFO" >
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="OPER_NAME" type="xsd:string" />
+							<xsd:element name="OPER_ADDR">
+								<xsd:annotation>
+									<xsd:documentation>Tigo Requirement</xsd:documentation>
+								</xsd:annotation>
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="ADDR1"/>
+										<xsd:element name="ADDR2" />
+										<xsd:element name="ADDR3" />
+										<xsd:element name="ZONE"/>
+										<xsd:element name="MUNCIPAL"/>
+										<xsd:element name="DEPARTMENT"/>
+										<xsd:element name="REGION"/>
+										<xsd:element name="COUNTRY"/>
+										<xsd:element name="FULL_ADD" />
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="OPER_CITY" type="xsd:string" />
+							<xsd:element name="OPER_VATNO" type="xsd:string" >
+								<xsd:annotation>
+									<xsd:documentation>Tigo Requirement</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="OPER_NRC" type="xsd:string" >
+								<xsd:annotation>
+									<xsd:documentation>Tigo Requirement</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="OPER_URL" type="xsd:string" >
+								<xsd:annotation>
+									<xsd:documentation>Tigo Requirement</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="OPER_PHONE" type="xsd:string" />
+							<xsd:element name="OPER_EMAIL" type="xsd:string" />
+							<xsd:element name="OPER_CONTACT" type="xsd:string" />
+							<xsd:element name="OPER_BANKNO" type="xsd:string" />
+							<xsd:element name="OPER_BANKNAME" type="xsd:string" />
+							<xsd:element name="AUTH_TEXT" >
+								<xsd:annotation>
+									<xsd:documentation>Tigo Requirement</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="BILL_CYCLE_INFO">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="BILL_CYCLE_ID" type="xsd:string"/>
+							<xsd:element name="BILL_CYCLE_BEGIN" type="xsd:string"/>
+							<xsd:element name="BILL_CYCLE_END" type="xsd:string"/>
+							<xsd:element name="DUE_DATE" type="xsd:string" />
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="BILL_RUN" maxOccurs="unbounded">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="BILL_CYCLE_INFO">
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="BILL_CYCLE_ID" type="xsd:string"/>
+										<xsd:element name="BILL_CYCLE_BEGIN" type="xsd:string"/>
+										<xsd:element name="BILL_CYCLE_END" type="xsd:string"/>
+										<xsd:element name="DUE_DATE" type="xsd:string" />
+										<xsd:element name="PERIOD_SERVICE">
+											<xsd:annotation>
+												<xsd:documentation>Tigo Requirement(CR1026)</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="BILL_PROP">
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="INVOICE_ID" type="xsd:string"/>
+										<xsd:element name="INVOICE_NO" type="xsd:string"/>
+										<xsd:element name="INVOICE_DATE" type="xsd:string" />
+										<xsd:element name="FROM_DATE" type="xsd:string" />
+										<xsd:element name="TO_DATE" type="xsd:string" />
+										<xsd:element name="DUE_DATE" type="xsd:string" />
+										<xsd:element name="LANG" type="xsd:string" />
+										<xsd:element name="CURRENCY" type="xsd:string" />
+										<xsd:element name="BILL_MEDIUM" type="xsd:string" />
+										<xsd:element name="FEE_PRECISION" type="xsd:string" />
+										<xsd:element name="BILL_INSERT" type="xsd:string" />
+										<xsd:element name="BILL_TYPE" type="xsd:string" />
+										<xsd:element name="BILL_DEMAND_TYPE" type="xsd:string" >
+											<xsd:annotation>
+												<xsd:documentation>Tigo Requirement Hot Bill Demand Type</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+										<xsd:element name="PRINT_CORR_ID" >
+											<xsd:annotation>
+												<xsd:documentation>Tigo Requirement</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+										<xsd:element name="TAX_CORR_ID" >
+											<xsd:annotation>
+												<xsd:documentation>Tigo Requirement</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+										<xsd:element name="EXCHANGE_RATE" >
+											<xsd:annotation>
+												<xsd:documentation>Tigo Requirement</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+										<xsd:element name="AUTH_TEXT" >
+											<xsd:annotation>
+												<xsd:documentation>Tigo Requirement</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+										<xsd:element name="AUTH_TEXT_FROM_DATE" >
+											<xsd:annotation>
+												<xsd:documentation>Tigo PY/BO Requirement</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+										<xsd:element name="AUTH_TEXT_TO_DATE" >
+											<xsd:annotation>
+												<xsd:documentation>Tigo PY/BO Requirement</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+										<xsd:element name="AUTH_NUMBER" >
+											<xsd:annotation>
+												<xsd:documentation>Tigo BO Requirement</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+										<xsd:element name="NPE" >
+											<xsd:annotation>
+												<xsd:documentation>Tigo Requirement</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+										<xsd:element name="NET" >
+											<xsd:annotation>
+												<xsd:documentation>Tigo Requirement</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+										<xsd:element name="NPE_TTP" >
+											<xsd:annotation>
+												<xsd:documentation>Tigo Requirement(CR1026)</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="CUSTOM_INFO">
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="CUST_GENDER" type="xsd:string" />
+										<xsd:element name="CUST_TYPE" type="xsd:string"/>
+										<xsd:element name="CUST_LEVEL" type="xsd:string"/>
+										<xsd:element name="CUST_ID" type="xsd:string"/>
+										<xsd:element name="COMP_REGISTRATION_ID" type="xsd:string" />
+										<xsd:element name="CUST_CODE" type="xsd:string"/>
+										<xsd:element name="COMPANY_NAME" >
+											<xsd:annotation>
+												<xsd:documentation>Tigo Requirement</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+										<xsd:element name="CUST_NAME" >
+											<xsd:annotation>
+												<xsd:documentation>Tigo Requirement</xsd:documentation>
+											</xsd:annotation>
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element name="TITLE" type="xsd:string"/>
+													<xsd:element name="FIRST_NAME" type="xsd:string"/>
+													<xsd:element name="MIDDLE_NAME" type="xsd:string" />
+													<xsd:element name="LAST_NAME" type="xsd:string" />
+													<xsd:element name="FULL_NAME" type="xsd:string" />
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="ACCT_INFO" maxOccurs="unbounded">
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="ACCT_PROP">
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element name="ACCT_ID" type="xsd:string"/>
+													<xsd:element name="ACCT_CODE" type="xsd:string"/>
+													<xsd:element name="ACCT_NAME" >
+														<xsd:complexType>
+															<xsd:sequence>
+																<xsd:element name="TITLE" type="xsd:string"/>
+																<xsd:element name="FIRST_NAME" type="xsd:string"/>
+																<xsd:element name="MIDDLE_NAME" type="xsd:string" />
+																<xsd:element name="LAST_NAME" type="xsd:string" />
+																<xsd:element name="FULL_NAME" type="xsd:string" />
+															</xsd:sequence>
+														</xsd:complexType>
+													</xsd:element>
+													<xsd:element name="ADDRESSTYPE">
+														<xsd:annotation>
+															<xsd:documentation>Tigo Requirement</xsd:documentation>
+														</xsd:annotation>
+														<xsd:complexType>
+															<xsd:sequence>
+																<xsd:element name="ADDR1"/>
+																<xsd:element name="ADDR2" />
+																<xsd:element name="ADDR3" />
+																<xsd:element name="ZONE"/>
+																<xsd:element name="MUNCIPAL"/>
+																<xsd:element name="DEPARTMENT"/>
+																<xsd:element name="REGION"/>
+																<xsd:element name="COUNTRY"/>
+																<xsd:element name="FULL_ADD"/>
+																<xsd:element name="EMAILADDR" type="xsd:string" />
+																<xsd:element name="SMSADDR" type="xsd:string" />
+															</xsd:sequence>
+														</xsd:complexType>
+													</xsd:element>
+													<xsd:element name="ACCOUNT_CURR">
+														<xsd:annotation>
+															<xsd:documentation>Tigo Requirement</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="ACCOUNT_CATEGORY">
+														<xsd:annotation>
+															<xsd:documentation>Tigo Requirement</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="BUSINESS_UNIT">
+														<xsd:annotation>
+															<xsd:documentation>Tigo Requirement</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="ROUTE_ID">
+														<xsd:annotation>
+															<xsd:documentation>Tigo Requirement</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="PAY_METHOD" type="xsd:string" />
+													<xsd:element name="PRINT_VATNO" type="xsd:string" />
+													<xsd:element name="PRINT_RTN" type="xsd:string" />
+													<xsd:element name="CREDIT_LIMIT_TYPE" >
+														<xsd:annotation>
+															<xsd:documentation>Tigo Requirement</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="CREDIT_LIMIT" type="xsd:string" />
+													<xsd:element name="TAX_POLICY_TYPE" type="xsd:string">
+														<xsd:annotation>
+															<xsd:documentation>Tigo Requirement</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="ACCOUNT_INFO_1" >
+														<xsd:annotation>
+															<xsd:documentation>Tigo Requirement</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="ACCOUNT_INFO_2" >
+														<xsd:annotation>
+															<xsd:documentation>Tigo Requirement</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="ACCOUNT_INFO_3" >
+														<xsd:annotation>
+															<xsd:documentation>Tigo Requirement</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="ACCOUNT_INFO_4" >
+														<xsd:annotation>
+															<xsd:documentation>Tigo Requirement</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="ACCOUNT_INFO_5" >
+														<xsd:annotation>
+															<xsd:documentation>Tigo Requirement</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="SERVICE_TYPE">
+														<xsd:annotation>
+															<xsd:documentation>Tigo Requirement</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="ACC_PRIMARY_IDENTIFIER">
+														<xsd:annotation>
+															<xsd:documentation>Tigo Requirement</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="ACC_SUBSCRIBER_IDENTIFIER">
+														<xsd:annotation>
+															<xsd:documentation>Tigo Requirement</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="SUBS_COUNT">
+														<xsd:annotation>
+															<xsd:documentation>Tigo Requirement</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="TAX_CORRELATIVE_TYPE" type="xsd:string">
+														<xsd:annotation>
+															<xsd:documentation>Tigo Requirement</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="ACCT_PAY_METHOD" type="xsd:string" >
+														<xsd:annotation>
+															<xsd:documentation>Tigo Requirement(CR1006)</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+										<xsd:element name="ACCT_SUMFEE"  maxOccurs="unbounded">
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element name="CHG_FEE" type="xsd:string"/>
+													<xsd:element name="DESC" type="xsd:string"/>
+													<xsd:element name="CURRENCY" type="xsd:string"/>
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+										<xsd:element name="BILLED_CHARGE_SUMM">
+											<xsd:annotation>
+												<xsd:documentation>Tigo Requirement</xsd:documentation>
+											</xsd:annotation>
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element name="DISP_FEE_CATEGORY" maxOccurs="unbounded">
+														<xsd:complexType>
+															<xsd:sequence>
+																<xsd:element name="CATEGORY_CHARGE_SUMM" maxOccurs="unbounded">
+																	<xsd:complexType>
+																		<xsd:sequence>
+																			<xsd:element name="DISP_FEE_ITEM_GROUP"/>
+																			<xsd:element name="CHG_FEE_WOTAX"/>
+																			<xsd:element name="CHG_FEE_WTAX" />
+																			<xsd:element name="DESC"/>
+																			<xsd:element name="CURRENCY"/>
+																			<xsd:element name="CYCLENO" />
+																			<xsd:element name="STARTDATE" />
+																			<xsd:element name="ENDDATE" />
+																			<xsd:element name="RATINGTAX1" />
+																			<xsd:element name="RATINGTAX2" />
+																			<xsd:element name="RATINGTAX3" />
+																			<xsd:element name="RATINGTAX4" />
+																			<xsd:element name="DISC1" />
+																			<xsd:element name="DISC2" />
+																			<xsd:element name="DISC3" />
+																			<xsd:element name="QUANTITY" />
+																			<xsd:element name="DURATION_VOLUME" />
+																		</xsd:sequence>
+																	</xsd:complexType>
+																</xsd:element>
+																<xsd:element name="CATEGORY_CHARGE_SUMM_SUBTOTAL">
+																	<xsd:complexType>
+																		<xsd:sequence>
+																			<xsd:element name="CHG_FEE_SUBTOTAL"/>
+																			<xsd:element name="CURRENCY"/>
+																		</xsd:sequence>
+																	</xsd:complexType>
+																</xsd:element>
+																<xsd:element name="CATEGORY_BILLING_TAX" maxOccurs="unbounded">
+																	<xsd:complexType>
+																		<xsd:sequence>
+																			<xsd:element name="TAX_AMT"/>
+																			<xsd:element name="TAXID"/>
+																			<xsd:element name="DESC"/>
+																			<xsd:element name="CURRENCY"/>
+																		</xsd:sequence>
+																	</xsd:complexType>
+																</xsd:element>
+															</xsd:sequence>
+															<xsd:attribute name="DISP_FEE_CATEGORY"/>
+														</xsd:complexType>
+													</xsd:element>
+													<xsd:element name="CATEGORY_CHARGE_SUMM_TOTAL">
+														<xsd:complexType>
+															<xsd:sequence>
+																<xsd:element name="CHG_FEE_SUBTOTAL"/>
+																<xsd:element name="CURRENCY"/>
+															</xsd:sequence>
+														</xsd:complexType>
+													</xsd:element>
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+										<xsd:element name="BILLING_TAX"  maxOccurs="unbounded">
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element name="CHG_FEE" type="xsd:string"/>
+													<xsd:element name="TAXID" type="xsd:string"/>
+													<xsd:element name="DESC" type="xsd:string"/>
+													<xsd:element name="CURRENCY" type="xsd:string"/>
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+										<xsd:element name="LEGAL_CHARGE_SUMM" >
+											<xsd:annotation>
+												<xsd:documentation>Tigo PY Requirement</xsd:documentation>
+											</xsd:annotation>
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element name="DISP_FEE_CATEGORY" maxOccurs="unbounded">
+														<xsd:complexType>
+															<xsd:sequence>
+																<xsd:element name="TAXEXEMPT_AMT"/>
+																<xsd:element name="TAXABLE_AMT"/>
+																<xsd:element name="TOTAL_AMT"/>
+																<xsd:element name="CURRENCY"/>
+															</xsd:sequence>
+															<xsd:attribute name="DISP_FEE_CATEGORY"/>
+														</xsd:complexType>
+													</xsd:element>
+													<xsd:element name="CATEGORY_CHARGE_SUMM_TOTAL">
+														<xsd:complexType>
+															<xsd:sequence>
+																<xsd:element name="TOTAL_TAXEXEMPT_AMT"/>
+																<xsd:element name="TOTAL_TAXABLE_AMT"/>
+																<xsd:element name="TOTAL_AMT"/>
+																<xsd:element name="CURRENCY"/>
+																<xsd:element name="LEGAL_CHARGE_WORDS"/>
+																<xsd:element name="TOTAL_TAX_AMT"/>
+															</xsd:sequence>
+														</xsd:complexType>
+													</xsd:element>
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+										<xsd:element name="INVOICE_HISTORY_SUMM" >
+											<xsd:annotation>
+												<xsd:documentation>Tigo PY Requirement</xsd:documentation>
+											</xsd:annotation>
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element name="INVOICE_CYCLE_ID" maxOccurs="unbounded">
+														<xsd:complexType>
+															<xsd:sequence>
+																<xsd:element name="INVOICE_NO"/>
+																<xsd:element name="INVOICE_ISSUE_DATE"/>
+																<xsd:element name="INVOICE_AMOUNT"/>
+																<xsd:element name="AMOUNT_PAID"/>
+																<xsd:element name="OPEN_AMOUNT"/>
+															</xsd:sequence>
+														</xsd:complexType>
+													</xsd:element>
+													<xsd:element name="AVERAGE_MONTHLY_CHARGE"/>
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+										<xsd:element name="DETAIL_CHARGE"  maxOccurs="unbounded">
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element name="CHG_FEE_WOTAX">
+														<xsd:annotation>
+															<xsd:documentation>Tigo Requirement</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="CHG_FEE_WTAX" type="xsd:string" >
+														<xsd:annotation>
+															<xsd:documentation>Tigo Requirement</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="DESC" type="xsd:string"/>
+													<xsd:element name="CATEGORY" type="xsd:string"/>
+													<xsd:element name="SUBCATEGORY" type="xsd:string"/>
+													<xsd:element name="CYCLENO" type="xsd:string"/>
+													<xsd:element name="SERVICETYPE" type="xsd:string"/>
+													<xsd:element name="CHARGECODE" type="xsd:string"/>
+													<xsd:element name="ITEMID" type="xsd:string"/>
+													<xsd:element name="RATINGTAX1" type="xsd:string"/>
+													<xsd:element name="RATINGTAX2" type="xsd:string"/>
+													<xsd:element name="RATINGTAX3" type="xsd:string"/>
+													<xsd:element name="RATINGTAX4" type="xsd:string"/>
+													<xsd:element name="DISC1" type="xsd:string"/>
+													<xsd:element name="DISC2" type="xsd:string"/>
+													<xsd:element name="DISC3" type="xsd:string"/>
+													<xsd:element name="STARTDATE" type="xsd:string"/>
+													<xsd:element name="ENDDATE" type="xsd:string"/>
+													<xsd:element name="CURRENCY" type="xsd:string"/>
+													<xsd:element name="TOTALCYCLES" type="xsd:string" >
+														<xsd:annotation>
+															<xsd:documentation>Tigo PY Requirement</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+										<xsd:element name="CUST_CHARGE">
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element name="CUST_BILLED_CHARGE_SUMM" >
+														<xsd:annotation>
+															<xsd:documentation>Tigo Requirement</xsd:documentation>
+														</xsd:annotation>
+														<xsd:complexType>
+															<xsd:sequence>
+																<xsd:element name="DISP_FEE_CATEGORY" maxOccurs="unbounded">
+																	<xsd:complexType>
+																		<xsd:sequence>
+																			<xsd:element name="CATEGORY_CHARGE_SUMM" maxOccurs="unbounded">
+																				<xsd:complexType>
+																					<xsd:sequence>
+																						<xsd:element name="DISP_FEE_ITEM_GROUP"/>
+																						<xsd:element name="CHG_FEE_WOTAX"/>
+																						<xsd:element name="CHG_FEE_WTAX" />
+																						<xsd:element name="DESC"/>
+																						<xsd:element name="CURRENCY"/>
+																						<xsd:element name="CYCLENO" />
+																						<xsd:element name="STARTDATE" />
+																						<xsd:element name="ENDDATE" />
+																						<xsd:element name="RATINGTAX1" />
+																						<xsd:element name="RATINGTAX2" />
+																						<xsd:element name="RATINGTAX3" />
+																						<xsd:element name="RATINGTAX4" />
+																						<xsd:element name="DISC1" />
+																						<xsd:element name="DISC2" />
+																						<xsd:element name="DISC3" />
+																						<xsd:element name="QUANTITY" />
+																					</xsd:sequence>
+																				</xsd:complexType>
+																			</xsd:element>
+																			<xsd:element name="CATEGORY_CHARGE_SUMM_SUBTOTAL">
+																				<xsd:complexType>
+																					<xsd:sequence>
+																						<xsd:element name="CHG_FEE_SUBTOTAL"/>
+																						<xsd:element name="CURRENCY"/>
+																					</xsd:sequence>
+																				</xsd:complexType>
+																			</xsd:element>
+																			<xsd:element name="CATEGORY_BILLING_TAX"  maxOccurs="unbounded">
+																				<xsd:complexType>
+																					<xsd:sequence>
+																						<xsd:element name="TAX_AMT"/>
+																						<xsd:element name="TAXID"/>
+																						<xsd:element name="DESC"/>
+																						<xsd:element name="CURRENCY"/>
+																					</xsd:sequence>
+																				</xsd:complexType>
+																			</xsd:element>
+																		</xsd:sequence>
+																		<xsd:attribute name="DISP_FEE_CATEGORY"/>
+																	</xsd:complexType>
+																</xsd:element>
+																<xsd:element name="CATEGORY_CHARGE_SUMM_TOTAL">
+																	<xsd:complexType>
+																		<xsd:sequence>
+																			<xsd:element name="CHG_FEE_SUBTOTAL"/>
+																			<xsd:element name="CURRENCY"/>
+																		</xsd:sequence>
+																	</xsd:complexType>
+																</xsd:element>
+															</xsd:sequence>
+														</xsd:complexType>
+													</xsd:element>
+													<xsd:element name="FEE_CATEGORY"  maxOccurs="unbounded">
+														<xsd:complexType>
+															<xsd:sequence>
+																<xsd:element name="DETAIL_CHARGE"  maxOccurs="unbounded">
+																	<xsd:complexType>
+																		<xsd:sequence>
+																			<xsd:element name="CHG_FEE_WOTAX">
+																				<xsd:annotation>
+																					<xsd:documentation>Tigo Requirement</xsd:documentation>
+																				</xsd:annotation>
+																			</xsd:element>
+																			<xsd:element name="CHG_FEE_WTAX" type="xsd:string">
+																				<xsd:annotation>
+																					<xsd:documentation>Tigo Requirement</xsd:documentation>
+																				</xsd:annotation>
+																			</xsd:element>
+																			<xsd:element name="DESC" type="xsd:string"/>
+																			<xsd:element name="CATEGORY" type="xsd:string"/>
+																			<xsd:element name="SUBCATEGORY" type="xsd:string"/>
+																			<xsd:element name="CYCLENO" type="xsd:string"/>
+																			<xsd:element name="SERVICETYPE" type="xsd:string"/>
+																			<xsd:element name="CHARGECODE" type="xsd:string"/>
+																			<xsd:element name="ITEMID" type="xsd:string"/>
+																			<xsd:element name="RATINGTAX1" type="xsd:string"/>
+																			<xsd:element name="RATINGTAX2" type="xsd:string"/>
+																			<xsd:element name="RATINGTAX3" type="xsd:string"/>
+																			<xsd:element name="RATINGTAX4" type="xsd:string"/>
+																			<xsd:element name="DISC1" type="xsd:string"/>
+																			<xsd:element name="DISC2" type="xsd:string"/>
+																			<xsd:element name="DISC3" type="xsd:string"/>
+																			<xsd:element name="STARTDATE" type="xsd:string"/>
+																			<xsd:element name="ENDDATE" type="xsd:string"/>
+																			<xsd:element name="CURRENCY" type="xsd:string"/>
+																		</xsd:sequence>
+																	</xsd:complexType>
+																</xsd:element>
+															</xsd:sequence>
+															<xsd:attribute name="PayAcctCode" type="xsd:string"/>
+														</xsd:complexType>
+													</xsd:element>
+													<xsd:element name="FREEUNIT"  maxOccurs="unbounded">
+														<xsd:complexType>
+															<xsd:sequence>
+																<xsd:element name="OFFERNAME" type="xsd:string"/>
+																<xsd:element name="FREEUNITDESC" type="xsd:string"/>
+																<xsd:element name="ADDED" type="xsd:string"/>
+																<xsd:element name="LASTROLL" type="xsd:string"/>
+																<xsd:element name="ADJUSTED" type="xsd:string"/>
+																<xsd:element name="USED" type="xsd:string"/>
+																<xsd:element name="REMAINED" type="xsd:string"/>
+																<xsd:element name="ROLLNEXT" type="xsd:string"/>
+															</xsd:sequence>
+														</xsd:complexType>
+													</xsd:element>
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+										<xsd:element name="SUBS_INFO"  maxOccurs="unbounded">
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element name="PRIMARY_IDENTIFIER" type="xsd:string">
+														<xsd:annotation>
+															<xsd:documentation>Tigo Requirement</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="SUBSCRIBER_IDENTIFIER" type="xsd:string" >
+														<xsd:annotation>
+															<xsd:documentation>Tigo Requirement</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="ACCT_CODE" type="xsd:string" />
+													<xsd:element name="SUB_NAME" >
+														<xsd:complexType>
+															<xsd:sequence>
+																<xsd:element name="TITLE" type="xsd:string"/>
+																<xsd:element name="FIRST_NAME" type="xsd:string"/>
+																<xsd:element name="MIDDLE_NAME" type="xsd:string" />
+																<xsd:element name="LAST_NAME" type="xsd:string" />
+																<xsd:element name="FULL_NAME" type="xsd:string" />
+															</xsd:sequence>
+														</xsd:complexType>
+													</xsd:element>
+													<xsd:element name="NETWORK_TELE_TYPE">
+														<xsd:annotation>
+															<xsd:documentation>Tigo Requirement</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="PRIMARY_OFFERING">
+														<xsd:annotation>
+															<xsd:documentation>Tigo Requirement</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="SUBS_INFO_1" >
+														<xsd:annotation>
+															<xsd:documentation>Tigo Requirement</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="SUBS_INFO_2" >
+														<xsd:annotation>
+															<xsd:documentation>Tigo Requirement</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="SUBS_BILLED_CHARGE_SUMM">
+														<xsd:annotation>
+															<xsd:documentation>Tigo Requirement</xsd:documentation>
+														</xsd:annotation>
+														<xsd:complexType>
+															<xsd:sequence>
+																<xsd:element name="DISP_FEE_CATEGORY" maxOccurs="unbounded">
+																	<xsd:complexType>
+																		<xsd:sequence>
+																			<xsd:element name="CATEGORY_CHARGE_SUMM" maxOccurs="unbounded">
+																				<xsd:complexType>
+																					<xsd:sequence>
+																						<xsd:element name="DISP_FEE_ITEM_GROUP"/>
+																						<xsd:element name="CHG_FEE_WOTAX"/>
+																						<xsd:element name="CHG_FEE_WTAX" />
+																						<xsd:element name="DESC"/>
+																						<xsd:element name="CURRENCY"/>
+																						<xsd:element name="CYCLENO" />
+																						<xsd:element name="STARTDATE" />
+																						<xsd:element name="ENDDATE" />
+																						<xsd:element name="RATINGTAX1" />
+																						<xsd:element name="RATINGTAX2" />
+																						<xsd:element name="RATINGTAX3" />
+																						<xsd:element name="RATINGTAX4" />
+																						<xsd:element name="DISC1" />
+																						<xsd:element name="DISC2" />
+																						<xsd:element name="DISC3" />
+																						<xsd:element name="QUANTITY" />
+																						<xsd:element name="DURATION_VOLUME" />
+																						<xsd:element name="TOTALCYCLES" >
+																							<xsd:annotation>
+																								<xsd:documentation>TIGO PY Requirement</xsd:documentation>
+																							</xsd:annotation>
+																						</xsd:element>
+																					</xsd:sequence>
+																				</xsd:complexType>
+																			</xsd:element>
+																			<xsd:element name="CATEGORY_CHARGE_SUMM_SUBTOTAL">
+																				<xsd:complexType>
+																					<xsd:sequence>
+																						<xsd:element name="CHG_FEE_SUBTOTAL"/>
+																						<xsd:element name="CURRENCY"/>
+																					</xsd:sequence>
+																				</xsd:complexType>
+																			</xsd:element>
+																			<xsd:element name="CATEGORY_BILLING_TAX"  maxOccurs="unbounded">
+																				<xsd:complexType>
+																					<xsd:sequence>
+																						<xsd:element name="TAX_AMT"/>
+																						<xsd:element name="TAXID"/>
+																						<xsd:element name="DESC"/>
+																						<xsd:element name="CURRENCY"/>
+																					</xsd:sequence>
+																				</xsd:complexType>
+																			</xsd:element>
+																		</xsd:sequence>
+																		<xsd:attribute name="DISP_FEE_CATEGORY"/>
+																	</xsd:complexType>
+																</xsd:element>
+																<xsd:element name="CATEGORY_CHARGE_SUMM_TOTAL">
+																	<xsd:complexType>
+																		<xsd:sequence>
+																			<xsd:element name="CHG_FEE_SUBTOTAL"/>
+																			<xsd:element name="CURRENCY"/>
+																		</xsd:sequence>
+																	</xsd:complexType>
+																</xsd:element>
+															</xsd:sequence>
+														</xsd:complexType>
+													</xsd:element>
+													<xsd:element name="SUBS_SUMFEE"  maxOccurs="unbounded">
+														<xsd:complexType>
+															<xsd:sequence>
+																<xsd:element name="CHG_FEE" type="xsd:string"/>
+																<xsd:element name="DESC" type="xsd:string"/>
+																<xsd:element name="CURRENCY" type="xsd:string"/>
+															</xsd:sequence>
+														</xsd:complexType>
+													</xsd:element>
+													<xsd:element name="SUB_BILLING_TAX"  maxOccurs="unbounded">
+														<xsd:annotation>
+															<xsd:documentation>SV Requirement 1026</xsd:documentation>
+														</xsd:annotation>
+														<xsd:complexType>
+															<xsd:sequence>
+																<xsd:element name="TAX_AMT" type="xsd:string"/>
+																<xsd:element name="TAXID" type="xsd:string"/>
+																<xsd:element name="DESC" type="xsd:string"/>
+																<xsd:element name="CURRENCY" type="xsd:string"/>
+															</xsd:sequence>
+														</xsd:complexType>
+													</xsd:element>
+													<xsd:element name="DETAIL_CHARGE">
+														<xsd:complexType>
+															<xsd:sequence>
+																<xsd:element name="FEE_CATEGORY"  maxOccurs="unbounded">
+																	<xsd:complexType>
+																		<xsd:sequence>
+																			<xsd:element name="DETAIL_CHARGE"  maxOccurs="unbounded">
+																				<xsd:complexType>
+																					<xsd:sequence>
+																						<xsd:element name="CHG_FEE_WOTAX" type="xsd:string">
+																							<xsd:annotation>
+																								<xsd:documentation>Tigo Requirement</xsd:documentation>
+																							</xsd:annotation>
+																						</xsd:element>
+																						<xsd:element name="CHG_FEE_WTAX" >
+																							<xsd:annotation>
+																								<xsd:documentation>Tigo Requirement</xsd:documentation>
+																							</xsd:annotation>
+																						</xsd:element>
+																						<xsd:element name="DESC" type="xsd:string"/>
+																						<xsd:element name="CATEGORY" type="xsd:string"/>
+																						<xsd:element name="SUBCATEGORY" type="xsd:string"/>
+																						<xsd:element name="CYCLENO" type="xsd:string"/>
+																						<xsd:element name="SERVICETYPE" type="xsd:string"/>
+																						<xsd:element name="CHARGECODE" type="xsd:string"/>
+																						<xsd:element name="ITEMID" type="xsd:string"/>
+																						<xsd:element name="RATINGTAX1" type="xsd:string"/>
+																						<xsd:element name="RATINGTAX2" type="xsd:string"/>
+																						<xsd:element name="RATINGTAX3" type="xsd:string"/>
+																						<xsd:element name="RATINGTAX4" type="xsd:string"/>
+																						<xsd:element name="DISC1" type="xsd:string"/>
+																						<xsd:element name="DISC2" type="xsd:string"/>
+																						<xsd:element name="DISC3" type="xsd:string"/>
+																						<xsd:element name="STARTDATE" type="xsd:string"/>
+																						<xsd:element name="ENDDATE" type="xsd:string"/>
+																						<xsd:element name="CURRENCY" type="xsd:string"/>
+																					</xsd:sequence>
+																				</xsd:complexType>
+																			</xsd:element>
+																		</xsd:sequence>
+																		<xsd:attribute name="PAYACCTCODE" type="xsd:string"/>
+																	</xsd:complexType>
+																</xsd:element>
+																<xsd:element name="CDR_DISPLAY_CATEGORY"  maxOccurs="unbounded">
+																	<xsd:complexType>
+																		<xsd:sequence>
+																			<xsd:element name="CDR_INFO"  maxOccurs="unbounded">
+																				<xsd:annotation>
+																					<xsd:documentation>Tigo Requirement</xsd:documentation>
+																				</xsd:annotation>
+																				<xsd:complexType>
+																					<xsd:sequence>
+																						<xsd:element name="CALL_FLOW" type="xsd:string"/>
+																						<xsd:element name="OTHER_NUM" type="xsd:string"/>
+																						<xsd:element name="OTHER_NUM_COUNTRY" type="xsd:string" />
+																						<xsd:element name="CALL_MASK" type="xsd:string"/>
+																						<xsd:element name="DATE_TIME" type="xsd:string"/>
+																						<xsd:element name="CHG_AMT" type="xsd:string"/>
+																						<xsd:element name="TAX_AMT1" type="xsd:string" />
+																						<xsd:element name="TAX_AMT2" type="xsd:string" />
+																						<xsd:element name="TAX_AMT3" type="xsd:string" />
+																						<xsd:element name="VOLUME" type="xsd:string"/>
+																						<xsd:element name="SERVICE_TYPE" type="xsd:string" />
+																						<xsd:element name="START_TIME" type="xsd:string"/>
+																						<xsd:element name="END_TIME" type="xsd:string"/>
+																						<xsd:element name="ROAMING_OPERATOR" type="xsd:string" />
+																						<xsd:element name="CALLED_NETWORK" type="xsd:string" />
+																						<xsd:element name="CALLING_NETWORK" type="xsd:string" />
+																						<xsd:element name="HOT_LINE" type="xsd:string" />
+																					</xsd:sequence>
+																				</xsd:complexType>
+																			</xsd:element>
+																		</xsd:sequence>
+																		<xsd:attribute name="CDR_DISPLAY_CATEGORY" type="xsd:string"/>
+																	</xsd:complexType>
+																</xsd:element>
+																<xsd:element name="FREEUNIT"  maxOccurs="unbounded">
+																	<xsd:complexType>
+																		<xsd:sequence>
+																			<xsd:element name="OFFERNAME" type="xsd:string"/>
+																			<xsd:element name="FREEUNITDESC" type="xsd:string"/>
+																			<xsd:element name="ADDED" type="xsd:string"/>
+																			<xsd:element name="LASTROLL" type="xsd:string"/>
+																			<xsd:element name="ADJUSTED" type="xsd:string"/>
+																			<xsd:element name="USED" type="xsd:string"/>
+																			<xsd:element name="REMAINED" type="xsd:string"/>
+																			<xsd:element name="ROLLNEXT" type="xsd:string"/>
+																		</xsd:sequence>
+																	</xsd:complexType>
+																</xsd:element>
+															</xsd:sequence>
+														</xsd:complexType>
+													</xsd:element>
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+										<xsd:element name="SUBSGROUP_INFO"  maxOccurs="unbounded">
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element name="GROUPID" type="xsd:string"/>
+													<xsd:element name="GROUP_NAME" type="xsd:string" />
+													<xsd:element name="SUBSGROUP_BILLED_CHARGE_SUMM">
+														<xsd:annotation>
+															<xsd:documentation>Tigo Requirement</xsd:documentation>
+														</xsd:annotation>
+														<xsd:complexType>
+															<xsd:sequence>
+																<xsd:element name="DISP_FEE_CATEGORY" maxOccurs="unbounded">
+																	<xsd:complexType>
+																		<xsd:sequence>
+																			<xsd:element name="CATEGORY_CHARGE_SUMM" maxOccurs="unbounded">
+																				<xsd:complexType>
+																					<xsd:sequence>
+																						<xsd:element name="DISP_FEE_ITEM_GROUP"/>
+																						<xsd:element name="CHG_FEE_WOTAX"/>
+																						<xsd:element name="CHG_FEE_WTAX" />
+																						<xsd:element name="DESC"/>
+																						<xsd:element name="CURRENCY"/>
+																						<xsd:element name="CYCLENO" />
+																						<xsd:element name="STARTDATE" />
+																						<xsd:element name="ENDDATE" />
+																						<xsd:element name="RATINGTAX1" />
+																						<xsd:element name="RATINGTAX2" />
+																						<xsd:element name="RATINGTAX3" />
+																						<xsd:element name="RATINGTAX4" />
+																						<xsd:element name="DISC1" />
+																						<xsd:element name="DISC2" />
+																						<xsd:element name="DISC3" />
+																						<xsd:element name="QUANTITY" />
+																						<xsd:element name="DURATION_VOLUME" />
+																					</xsd:sequence>
+																				</xsd:complexType>
+																			</xsd:element>
+																			<xsd:element name="CATEGORY_CHARGE_SUMM_SUBTOTAL">
+																				<xsd:complexType>
+																					<xsd:sequence>
+																						<xsd:element name="CHG_FEE_SUBTOTAL"/>
+																						<xsd:element name="CURRENCY"/>
+																					</xsd:sequence>
+																				</xsd:complexType>
+																			</xsd:element>
+																			<xsd:element name="CATEGORY_BILLING_TAX"  maxOccurs="unbounded">
+																				<xsd:complexType>
+																					<xsd:sequence>
+																						<xsd:element name="TAX_AMT"/>
+																						<xsd:element name="TAXID"/>
+																						<xsd:element name="DESC"/>
+																						<xsd:element name="CURRENCY"/>
+																					</xsd:sequence>
+																				</xsd:complexType>
+																			</xsd:element>
+																		</xsd:sequence>
+																		<xsd:attribute name="DISP_FEE_CATEGORY"/>
+																	</xsd:complexType>
+																</xsd:element>
+																<xsd:element name="CATEGORY_CHARGE_SUMM_TOTAL">
+																	<xsd:complexType>
+																		<xsd:sequence>
+																			<xsd:element name="CHG_FEE_SUBTOTAL"/>
+																			<xsd:element name="CURRENCY"/>
+																		</xsd:sequence>
+																	</xsd:complexType>
+																</xsd:element>
+															</xsd:sequence>
+														</xsd:complexType>
+													</xsd:element>
+													<xsd:element name="SUBSGROUP_CHARGE" >
+														<xsd:complexType>
+															<xsd:sequence>
+																<xsd:element name="FEE_CATEGORY"  maxOccurs="unbounded">
+																	<xsd:complexType>
+																		<xsd:sequence>
+																			<xsd:element name="DETAIL_CHARGE"  maxOccurs="unbounded">
+																				<xsd:complexType>
+																					<xsd:sequence>
+																						<xsd:element name="CHG_FEE_WOTAX" type="xsd:string">
+																							<xsd:annotation>
+																								<xsd:documentation>Tigo Requirement</xsd:documentation>
+																							</xsd:annotation>
+																						</xsd:element>
+																						<xsd:element name="CHG_FEE_WTAX" >
+																							<xsd:annotation>
+																								<xsd:documentation>Tigo Requirement</xsd:documentation>
+																							</xsd:annotation>
+																						</xsd:element>
+																						<xsd:element name="DESC" type="xsd:string"/>
+																						<xsd:element name="CATEGORY" type="xsd:string"/>
+																						<xsd:element name="SUBCATEGORY" type="xsd:string"/>
+																						<xsd:element name="CYCLENO" type="xsd:string"/>
+																						<xsd:element name="SERVICETYPE" type="xsd:string"/>
+																						<xsd:element name="CHARGECODE" type="xsd:string"/>
+																						<xsd:element name="ITEMID" type="xsd:string"/>
+																						<xsd:element name="RATINGTAX1" type="xsd:string"/>
+																						<xsd:element name="RATINGTAX2" type="xsd:string"/>
+																						<xsd:element name="RATINGTAX3" type="xsd:string"/>
+																						<xsd:element name="RATINGTAX4" type="xsd:string"/>
+																						<xsd:element name="DISC1" type="xsd:string"/>
+																						<xsd:element name="DISC2" type="xsd:string"/>
+																						<xsd:element name="DISC3" type="xsd:string"/>
+																						<xsd:element name="STARTDATE" type="xsd:string"/>
+																						<xsd:element name="ENDDATE" type="xsd:string"/>
+																						<xsd:element name="CURRENCY" type="xsd:string"/>
+																					</xsd:sequence>
+																				</xsd:complexType>
+																			</xsd:element>
+																		</xsd:sequence>
+																		<xsd:attribute name="PAYACCTCODE" type="xsd:string"/>
+																	</xsd:complexType>
+																</xsd:element>
+																<xsd:element name="FREEUNIT"  maxOccurs="unbounded">
+																	<xsd:complexType>
+																		<xsd:sequence>
+																			<xsd:element name="OFFERNAME" type="xsd:string"/>
+																			<xsd:element name="FREEUNITDESC" type="xsd:string"/>
+																			<xsd:element name="ADDED" type="xsd:string"/>
+																			<xsd:element name="LASTROLL" type="xsd:string"/>
+																			<xsd:element name="ADJUSTED" type="xsd:string"/>
+																			<xsd:element name="USED" type="xsd:string"/>
+																			<xsd:element name="REMAINED" type="xsd:string"/>
+																			<xsd:element name="ROLLNEXT" type="xsd:string"/>
+																		</xsd:sequence>
+																	</xsd:complexType>
+																</xsd:element>
+															</xsd:sequence>
+														</xsd:complexType>
+													</xsd:element>
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+										<xsd:element name="CROSS_PAY_SUBSGROUPS"  maxOccurs="unbounded">
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element name="GROUPID" type="xsd:string"/>
+													<xsd:element name="GROUP_NAME" type="xsd:string" />
+													<xsd:element name="ACCT_CODE" type="xsd:string" />
+													<xsd:element name="CROSSPAY_SUBSGROUP_BILLED_CHARGE_SUMM" >
+														<xsd:annotation>
+															<xsd:documentation>Tigo Requirement</xsd:documentation>
+														</xsd:annotation>
+														<xsd:complexType>
+															<xsd:sequence>
+																<xsd:element name="DISP_FEE_CATEGORY" maxOccurs="unbounded">
+																	<xsd:complexType>
+																		<xsd:sequence>
+																			<xsd:element name="CATEGORY_CHARGE_SUMM" maxOccurs="unbounded">
+																				<xsd:complexType>
+																					<xsd:sequence>
+																						<xsd:element name="DISP_FEE_ITEM_GROUP"/>
+																						<xsd:element name="CHG_FEE_WOTAX"/>
+																						<xsd:element name="CHG_FEE_WTAX" />
+																						<xsd:element name="DESC"/>
+																						<xsd:element name="CURRENCY"/>
+																						<xsd:element name="CYCLENO" />
+																						<xsd:element name="STARTDATE" />
+																						<xsd:element name="ENDDATE" />
+																						<xsd:element name="RATINGTAX1" />
+																						<xsd:element name="RATINGTAX2" />
+																						<xsd:element name="RATINGTAX3" />
+																						<xsd:element name="RATINGTAX4" />
+																						<xsd:element name="DISC1" />
+																						<xsd:element name="DISC2" />
+																						<xsd:element name="DISC3" />
+																						<xsd:element name="QUANTITY" />
+																						<xsd:element name="DURATION_VOLUME" />
+																					</xsd:sequence>
+																				</xsd:complexType>
+																			</xsd:element>
+																			<xsd:element name="CATEGORY_CHARGE_SUMM_SUBTOTAL">
+																				<xsd:complexType>
+																					<xsd:sequence>
+																						<xsd:element name="CHG_FEE_SUBTOTAL"/>
+																						<xsd:element name="CURRENCY"/>
+																					</xsd:sequence>
+																				</xsd:complexType>
+																			</xsd:element>
+																			<xsd:element name="CATEGORY_BILLING_TAX"  maxOccurs="unbounded">
+																				<xsd:complexType>
+																					<xsd:sequence>
+																						<xsd:element name="TAX_AMT"/>
+																						<xsd:element name="TAXID"/>
+																						<xsd:element name="DESC"/>
+																						<xsd:element name="CURRENCY"/>
+																					</xsd:sequence>
+																				</xsd:complexType>
+																			</xsd:element>
+																		</xsd:sequence>
+																		<xsd:attribute name="DISP_FEE_CATEGORY"/>
+																	</xsd:complexType>
+																</xsd:element>
+																<xsd:element name="CATEGORY_CHARGE_SUMM_TOTAL">
+																	<xsd:complexType>
+																		<xsd:sequence>
+																			<xsd:element name="CHG_FEE_SUBTOTAL"/>
+																			<xsd:element name="CURRENCY"/>
+																		</xsd:sequence>
+																	</xsd:complexType>
+																</xsd:element>
+															</xsd:sequence>
+														</xsd:complexType>
+													</xsd:element>
+													<xsd:element name="DETAIL_CHARGE"  maxOccurs="unbounded">
+														<xsd:complexType>
+															<xsd:sequence>
+																<xsd:element name="CHG_FEE_WOTAX">
+																	<xsd:annotation>
+																		<xsd:documentation>Tigo Requirement</xsd:documentation>
+																	</xsd:annotation>
+																</xsd:element>
+																<xsd:element name="CHG_FEE_WTAX" type="xsd:string" >
+																	<xsd:annotation>
+																		<xsd:documentation>Tigo Requirement</xsd:documentation>
+																	</xsd:annotation>
+																</xsd:element>
+																<xsd:element name="DESC" type="xsd:string"/>
+																<xsd:element name="CATEGORY" type="xsd:string"/>
+																<xsd:element name="SUBCATEGORY" type="xsd:string"/>
+																<xsd:element name="CYCLENO" type="xsd:string"/>
+																<xsd:element name="SERVICETYPE" type="xsd:string"/>
+																<xsd:element name="CHARGECODE" type="xsd:string"/>
+																<xsd:element name="ITEMID" type="xsd:string"/>
+																<xsd:element name="RATINGTAX1" type="xsd:string"/>
+																<xsd:element name="RATINGTAX2" type="xsd:string"/>
+																<xsd:element name="RATINGTAX3" type="xsd:string"/>
+																<xsd:element name="RATINGTAX4" type="xsd:string"/>
+																<xsd:element name="DISC1" type="xsd:string"/>
+																<xsd:element name="DISC2" type="xsd:string"/>
+																<xsd:element name="DISC3" type="xsd:string"/>
+																<xsd:element name="STARTDATE" type="xsd:string"/>
+																<xsd:element name="ENDDATE" type="xsd:string"/>
+																<xsd:element name="CURRENCY" type="xsd:string"/>
+															</xsd:sequence>
+														</xsd:complexType>
+													</xsd:element>
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+										<xsd:element name="CROSS_PAY_SUBS"  maxOccurs="unbounded">
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element name="PRIMARY_IDENTIFIER" type="xsd:string"/>
+													<xsd:element name="SUBSCRIBER_IDENTIFIER" type="xsd:string" />
+													<xsd:element name="ACCT_CODE" type="xsd:string" />
+													<xsd:element name="SUB_NAME" >
+														<xsd:complexType>
+															<xsd:sequence>
+																<xsd:element name="TITLE" type="xsd:string"/>
+																<xsd:element name="FIRST_NAME" type="xsd:string"/>
+																<xsd:element name="MIDDLE_NAME" type="xsd:string" />
+																<xsd:element name="LAST_NAME" type="xsd:string" />
+																<xsd:element name="FULL_NAME" type="xsd:string" />
+															</xsd:sequence>
+														</xsd:complexType>
+													</xsd:element>
+													<xsd:element name="PRIMARY_OFFERING" type="xsd:string" >
+														<xsd:annotation>
+															<xsd:documentation>Tigo Requirement</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="NETWORK_TELE_TYPE">
+														<xsd:annotation>
+															<xsd:documentation>Tigo Requirement</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="SUBS_INFO_1" >
+														<xsd:annotation>
+															<xsd:documentation>Tigo Requirement</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="SUBS_INFO_2" >
+														<xsd:annotation>
+															<xsd:documentation>Tigo Requirement</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="CROSS_PAY_SUBS_BILLED_CHARGE_SUMM" >
+														<xsd:annotation>
+															<xsd:documentation>Tigo Requirement</xsd:documentation>
+														</xsd:annotation>
+														<xsd:complexType>
+															<xsd:sequence>
+																<xsd:element name="DISP_FEE_CATEGORY" maxOccurs="unbounded">
+																	<xsd:complexType>
+																		<xsd:sequence>
+																			<xsd:element name="CATEGORY_CHARGE_SUMM" maxOccurs="unbounded">
+																				<xsd:complexType>
+																					<xsd:sequence>
+																						<xsd:element name="DISP_FEE_ITEM_GROUP"/>
+																						<xsd:element name="CHG_FEE_WOTAX"/>
+																						<xsd:element name="CHG_FEE_WTAX" />
+																						<xsd:element name="DESC"/>
+																						<xsd:element name="CURRENCY"/>
+																						<xsd:element name="CYCLENO" />
+																						<xsd:element name="STARTDATE" />
+																						<xsd:element name="ENDDATE" />
+																						<xsd:element name="RATINGTAX1" />
+																						<xsd:element name="RATINGTAX2" />
+																						<xsd:element name="RATINGTAX3" />
+																						<xsd:element name="RATINGTAX4" />
+																						<xsd:element name="DISC1" />
+																						<xsd:element name="DISC2" />
+																						<xsd:element name="DISC3" />
+																						<xsd:element name="QUANTITY" />
+																						<xsd:element name="DURATION_VOLUME" />
+																						<xsd:element name="TOTALCYCLES" >
+																							<xsd:annotation>
+																								<xsd:documentation>Tigo PY Requirement</xsd:documentation>
+																							</xsd:annotation>
+																						</xsd:element>
+																					</xsd:sequence>
+																				</xsd:complexType>
+																			</xsd:element>
+																			<xsd:element name="CATEGORY_CHARGE_SUMM_SUBTOTAL">
+																				<xsd:complexType>
+																					<xsd:sequence>
+																						<xsd:element name="CHG_FEE_SUBTOTAL"/>
+																						<xsd:element name="CURRENCY"/>
+																					</xsd:sequence>
+																				</xsd:complexType>
+																			</xsd:element>
+																			<xsd:element name="CATEGORY_BILLING_TAX"  maxOccurs="unbounded">
+																				<xsd:complexType>
+																					<xsd:sequence>
+																						<xsd:element name="TAX_AMT"/>
+																						<xsd:element name="TAXID"/>
+																						<xsd:element name="DESC"/>
+																						<xsd:element name="CURRENCY"/>
+																					</xsd:sequence>
+																				</xsd:complexType>
+																			</xsd:element>
+																		</xsd:sequence>
+																		<xsd:attribute name="DISP_FEE_CATEGORY"/>
+																	</xsd:complexType>
+																</xsd:element>
+																<xsd:element name="CATEGORY_CHARGE_SUMM_TOTAL">
+																	<xsd:complexType>
+																		<xsd:sequence>
+																			<xsd:element name="CHG_FEE_SUBTOTAL"/>
+																			<xsd:element name="CURRENCY"/>
+																		</xsd:sequence>
+																	</xsd:complexType>
+																</xsd:element>
+															</xsd:sequence>
+														</xsd:complexType>
+													</xsd:element>
+													<xsd:element name="SUB_BILLING_TAX"  maxOccurs="unbounded">
+														<xsd:complexType>
+															<xsd:sequence>
+																<xsd:element name="CHG_FEE" type="xsd:string"/>
+																<xsd:element name="TAXID" type="xsd:string"/>
+																<xsd:element name="DESC" type="xsd:string"/>
+																<xsd:element name="CURRENCY" type="xsd:string"/>
+															</xsd:sequence>
+														</xsd:complexType>
+													</xsd:element>
+													<xsd:element name="DETAIL_CHARGE">
+														<xsd:complexType>
+															<xsd:sequence>
+																<xsd:element name="FEE_CATEGORY"  maxOccurs="unbounded">
+																	<xsd:complexType>
+																		<xsd:sequence>
+																			<xsd:element name="DETAIL_CHARGE"  maxOccurs="unbounded">
+																				<xsd:complexType>
+																					<xsd:sequence>
+																						<xsd:element name="CHG_FEE_WOTAX" type="xsd:string">
+																							<xsd:annotation>
+																								<xsd:documentation>Tigo Requirement</xsd:documentation>
+																							</xsd:annotation>
+																						</xsd:element>
+																						<xsd:element name="CHG_FEE_WTAX" >
+																							<xsd:annotation>
+																								<xsd:documentation>Tigo Requirement</xsd:documentation>
+																							</xsd:annotation>
+																						</xsd:element>
+																						<xsd:element name="DESC" type="xsd:string"/>
+																						<xsd:element name="CATEGORY" type="xsd:string"/>
+																						<xsd:element name="SUBCATEGORY" type="xsd:string"/>
+																						<xsd:element name="CYCLENO" type="xsd:string"/>
+																						<xsd:element name="SERVICETYPE" type="xsd:string"/>
+																						<xsd:element name="CHARGECODE" type="xsd:string"/>
+																						<xsd:element name="ITEMID" type="xsd:string"/>
+																						<xsd:element name="RATINGTAX1" type="xsd:string"/>
+																						<xsd:element name="RATINGTAX2" type="xsd:string"/>
+																						<xsd:element name="RATINGTAX3" type="xsd:string"/>
+																						<xsd:element name="RATINGTAX4" type="xsd:string"/>
+																						<xsd:element name="DISC1" type="xsd:string"/>
+																						<xsd:element name="DISC2" type="xsd:string"/>
+																						<xsd:element name="DISC3" type="xsd:string"/>
+																						<xsd:element name="STARTDATE" type="xsd:string"/>
+																						<xsd:element name="ENDDATE" type="xsd:string"/>
+																						<xsd:element name="CURRENCY" type="xsd:string"/>
+																					</xsd:sequence>
+																				</xsd:complexType>
+																			</xsd:element>
+																		</xsd:sequence>
+																		<xsd:attribute name="PAYACCTCODE" type="xsd:string"/>
+																	</xsd:complexType>
+																</xsd:element>
+																<xsd:element name="CDR_DISPLAY_CATEGORY"  maxOccurs="unbounded">
+																	<xsd:complexType>
+																		<xsd:sequence>
+																			<xsd:element name="CDR_INFO"  maxOccurs="unbounded">
+																				<xsd:annotation>
+																					<xsd:documentation>Tigo Requirement</xsd:documentation>
+																				</xsd:annotation>
+																				<xsd:complexType>
+																					<xsd:sequence>
+																						<xsd:element name="CALL_FLOW" type="xsd:string"/>
+																						<xsd:element name="OTHER_NUM" type="xsd:string"/>
+																						<xsd:element name="OTHER_NUM_COUNTRY" type="xsd:string"/>
+																						<xsd:element name="CALL_MASK" type="xsd:string"/>
+																						<xsd:element name="DATE_TIME" type="xsd:string"/>
+																						<xsd:element name="CHG_AMT" type="xsd:string"/>
+																						<xsd:element name="TAX_AMT1" type="xsd:string" />
+																						<xsd:element name="TAX_AMT2" type="xsd:string" />
+																						<xsd:element name="TAX_AMT3" type="xsd:string" />
+																						<xsd:element name="VOLUME" type="xsd:string"/>
+																						<xsd:element name="SERVICE_TYPE" type="xsd:string" />
+																						<xsd:element name="START_TIME" type="xsd:string"/>
+																						<xsd:element name="END_TIME" type="xsd:string"/>
+																						<xsd:element name="ROAMING_OPERATOR" type="xsd:string" />
+																						<xsd:element name="CALLED_NETWORK" type="xsd:string" />
+																						<xsd:element name="CALLING_NETWORK" type="xsd:string" />
+																						<xsd:element name="HOT_LINE" type="xsd:string" />
+																					</xsd:sequence>
+																				</xsd:complexType>
+																			</xsd:element>
+																		</xsd:sequence>
+																		<xsd:attribute name="CDR_DISPLAY_CATEGORY" type="xsd:string"/>
+																	</xsd:complexType>
+																</xsd:element>
+															</xsd:sequence>
+														</xsd:complexType>
+													</xsd:element>
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+										<xsd:element name="CROSS_PAY_ACCTS"  maxOccurs="unbounded">
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element name="ACCT_ID" type="xsd:string"/>
+													<xsd:element name="ACCT_CODE" type="xsd:string"/>
+													<xsd:element name="ACCT_NAME" >
+														<xsd:complexType>
+															<xsd:sequence>
+																<xsd:element name="TITLE" type="xsd:string"/>
+																<xsd:element name="FIRST_NAME" type="xsd:string"/>
+																<xsd:element name="MIDDLE_NAME" type="xsd:string" />
+																<xsd:element name="LAST_NAME" type="xsd:string" />
+																<xsd:element name="FULL_NAME" type="xsd:string" />
+															</xsd:sequence>
+														</xsd:complexType>
+													</xsd:element>
+													<xsd:element name="CROSS_PAY_ACCT_BILLED_CHARGE_SUMM" >
+														<xsd:annotation>
+															<xsd:documentation>Tigo Requirement</xsd:documentation>
+														</xsd:annotation>
+														<xsd:complexType>
+															<xsd:sequence>
+																<xsd:element name="DISP_FEE_CATEGORY" maxOccurs="unbounded">
+																	<xsd:complexType>
+																		<xsd:sequence>
+																			<xsd:element name="CATEGORY_CHARGE_SUMM" maxOccurs="unbounded">
+																				<xsd:complexType>
+																					<xsd:sequence>
+																						<xsd:element name="DISP_FEE_ITEM_GROUP"/>
+																						<xsd:element name="CHG_FEE_WOTAX"/>
+																						<xsd:element name="CHG_FEE_WTAX" />
+																						<xsd:element name="DESC"/>
+																						<xsd:element name="CURRENCY"/>
+																						<xsd:element name="CYCLENO" />
+																						<xsd:element name="STARTDATE" />
+																						<xsd:element name="ENDDATE" />
+																						<xsd:element name="RATINGTAX1" />
+																						<xsd:element name="RATINGTAX2" />
+																						<xsd:element name="RATINGTAX3" />
+																						<xsd:element name="RATINGTAX4" />
+																						<xsd:element name="DISC1" />
+																						<xsd:element name="DISC2" />
+																						<xsd:element name="DISC3" />
+																						<xsd:element name="QUANTITY" />
+																						<xsd:element name="DURATION_VOLUME" />
+																					</xsd:sequence>
+																				</xsd:complexType>
+																			</xsd:element>
+																			<xsd:element name="CATEGORY_CHARGE_SUMM_SUBTOTAL">
+																				<xsd:complexType>
+																					<xsd:sequence>
+																						<xsd:element name="CHG_FEE_SUBTOTAL"/>
+																						<xsd:element name="CURRENCY"/>
+																					</xsd:sequence>
+																				</xsd:complexType>
+																			</xsd:element>
+																			<xsd:element name="CATEGORY_BILLING_TAX"  maxOccurs="unbounded">
+																				<xsd:complexType>
+																					<xsd:sequence>
+																						<xsd:element name="TAX_AMT"/>
+																						<xsd:element name="TAXID"/>
+																						<xsd:element name="DESC"/>
+																						<xsd:element name="CURRENCY"/>
+																					</xsd:sequence>
+																				</xsd:complexType>
+																			</xsd:element>
+																		</xsd:sequence>
+																		<xsd:attribute name="DISP_FEE_CATEGORY"/>
+																	</xsd:complexType>
+																</xsd:element>
+																<xsd:element name="CATEGORY_CHARGE_SUMM_TOTAL">
+																	<xsd:complexType>
+																		<xsd:sequence>
+																			<xsd:element name="CHG_FEE_SUBTOTAL"/>
+																			<xsd:element name="CURRENCY"/>
+																		</xsd:sequence>
+																	</xsd:complexType>
+																</xsd:element>
+															</xsd:sequence>
+														</xsd:complexType>
+													</xsd:element>
+													<xsd:element name="DETAIL_CHARGE"  maxOccurs="unbounded">
+														<xsd:complexType>
+															<xsd:sequence>
+																<xsd:element name="CHG_FEE_WOTAX">
+																	<xsd:annotation>
+																		<xsd:documentation>Tigo Requirement</xsd:documentation>
+																	</xsd:annotation>
+																</xsd:element>
+																<xsd:element name="CHG_FEE_WTAX" type="xsd:string" >
+																	<xsd:annotation>
+																		<xsd:documentation>Tigo Requirement</xsd:documentation>
+																	</xsd:annotation>
+																</xsd:element>
+																<xsd:element name="DESC" type="xsd:string"/>
+																<xsd:element name="CATEGORY" type="xsd:string"/>
+																<xsd:element name="SUBCATEGORY" type="xsd:string"/>
+																<xsd:element name="CYCLENO" type="xsd:string"/>
+																<xsd:element name="SERVICETYPE" type="xsd:string"/>
+																<xsd:element name="CHARGECODE" type="xsd:string"/>
+																<xsd:element name="ITEMID" type="xsd:string"/>
+																<xsd:element name="RATINGTAX1" type="xsd:string"/>
+																<xsd:element name="RATINGTAX2" type="xsd:string"/>
+																<xsd:element name="RATINGTAX3" type="xsd:string"/>
+																<xsd:element name="RATINGTAX4" type="xsd:string"/>
+																<xsd:element name="DISC1" type="xsd:string"/>
+																<xsd:element name="DISC2" type="xsd:string"/>
+																<xsd:element name="DISC3" type="xsd:string"/>
+																<xsd:element name="STARTDATE" type="xsd:string"/>
+																<xsd:element name="ENDDATE" type="xsd:string"/>
+																<xsd:element name="CURRENCY" type="xsd:string"/>
+															</xsd:sequence>
+														</xsd:complexType>
+													</xsd:element>
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+										<xsd:element name="CROSS_PAY_CUSTS"  maxOccurs="unbounded">
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element name="CUST_ID" type="xsd:string"/>
+													<xsd:element name="CUST_CODE" type="xsd:string"/>
+													<xsd:element name="COMPANY_NAME" >
+														<xsd:annotation>
+															<xsd:documentation>Tigo Requirement</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="CUST_NAME" >
+														<xsd:annotation>
+															<xsd:documentation>Tigo Requirement</xsd:documentation>
+														</xsd:annotation>
+														<xsd:complexType>
+															<xsd:sequence>
+																<xsd:element name="TITLE" type="xsd:string"/>
+																<xsd:element name="FIRST_NAME" type="xsd:string"/>
+																<xsd:element name="MIDDLE_NAME" type="xsd:string" />
+																<xsd:element name="LAST_NAME" type="xsd:string" />
+																<xsd:element name="FULL_NAME" type="xsd:string" />
+															</xsd:sequence>
+														</xsd:complexType>
+													</xsd:element>
+													<xsd:element name="CROSS_PAY_CUST_BILLED_CHARGE_SUMM" >
+														<xsd:annotation>
+															<xsd:documentation>Tigo Requirement</xsd:documentation>
+														</xsd:annotation>
+														<xsd:complexType>
+															<xsd:sequence>
+																<xsd:element name="DISP_FEE_CATEGORY" maxOccurs="unbounded">
+																	<xsd:complexType>
+																		<xsd:sequence>
+																			<xsd:element name="CATEGORY_CHARGE_SUMM" maxOccurs="unbounded">
+																				<xsd:complexType>
+																					<xsd:sequence>
+																						<xsd:element name="DISP_FEE_ITEM_GROUP"/>
+																						<xsd:element name="CHG_FEE_WOTAX"/>
+																						<xsd:element name="CHG_FEE_WTAX" />
+																						<xsd:element name="DESC"/>
+																						<xsd:element name="CURRENCY"/>
+																						<xsd:element name="CYCLENO" />
+																						<xsd:element name="STARTDATE" />
+																						<xsd:element name="ENDDATE" />
+																						<xsd:element name="RATINGTAX1" />
+																						<xsd:element name="RATINGTAX2" />
+																						<xsd:element name="RATINGTAX3" />
+																						<xsd:element name="RATINGTAX4" />
+																						<xsd:element name="DISC1" />
+																						<xsd:element name="DISC2" />
+																						<xsd:element name="DISC3" />
+																						<xsd:element name="QUANTITY" />
+																						<xsd:element name="DURATION_VOLUME" />
+																					</xsd:sequence>
+																				</xsd:complexType>
+																			</xsd:element>
+																			<xsd:element name="CATEGORY_CHARGE_SUMM_SUBTOTAL">
+																				<xsd:complexType>
+																					<xsd:sequence>
+																						<xsd:element name="CHG_FEE_SUBTOTAL"/>
+																						<xsd:element name="CURRENCY"/>
+																					</xsd:sequence>
+																				</xsd:complexType>
+																			</xsd:element>
+																			<xsd:element name="CATEGORY_BILLING_TAX"  maxOccurs="unbounded">
+																				<xsd:complexType>
+																					<xsd:sequence>
+																						<xsd:element name="TAX_AMT"/>
+																						<xsd:element name="TAXID"/>
+																						<xsd:element name="DESC"/>
+																						<xsd:element name="CURRENCY"/>
+																					</xsd:sequence>
+																				</xsd:complexType>
+																			</xsd:element>
+																		</xsd:sequence>
+																		<xsd:attribute name="DISP_FEE_CATEGORY"/>
+																	</xsd:complexType>
+																</xsd:element>
+																<xsd:element name="CATEGORY_CHARGE_SUMM_TOTAL">
+																	<xsd:complexType>
+																		<xsd:sequence>
+																			<xsd:element name="CHG_FEE_SUBTOTAL"/>
+																			<xsd:element name="CURRENCY"/>
+																		</xsd:sequence>
+																	</xsd:complexType>
+																</xsd:element>
+															</xsd:sequence>
+														</xsd:complexType>
+													</xsd:element>
+													<xsd:element name="DETAIL_CHARGE"  maxOccurs="unbounded">
+														<xsd:complexType>
+															<xsd:sequence>
+																<xsd:element name="CHG_FEE_WOTAX" type="xsd:string"/>
+																<xsd:element name="CHG_FEE_WTAX" type="xsd:string"/>
+																<xsd:element name="DESC" type="xsd:string"/>
+																<xsd:element name="CATEGORY" type="xsd:string"/>
+																<xsd:element name="SUBCATEGORY" type="xsd:string"/>
+																<xsd:element name="CYCLENO" type="xsd:string"/>
+																<xsd:element name="SERVICETYPE" type="xsd:string"/>
+																<xsd:element name="CHARGECODE" type="xsd:string"/>
+																<xsd:element name="ITEMID" type="xsd:string"/>
+																<xsd:element name="RATINGTAX1" type="xsd:string"/>
+																<xsd:element name="RATINGTAX2" type="xsd:string"/>
+																<xsd:element name="RATINGTAX3" type="xsd:string"/>
+																<xsd:element name="RATINGTAX4" type="xsd:string"/>
+																<xsd:element name="DISC1" type="xsd:string"/>
+																<xsd:element name="DISC2" type="xsd:string"/>
+																<xsd:element name="DISC3" type="xsd:string"/>
+																<xsd:element name="STARTDATE" type="xsd:string"/>
+																<xsd:element name="ENDDATE" type="xsd:string"/>
+																<xsd:element name="CURRENCY" type="xsd:string"/>
+															</xsd:sequence>
+														</xsd:complexType>
+													</xsd:element>
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+										<xsd:element name="AR_TRANS"  maxOccurs="unbounded">
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element name="TRANS_ID" type="xsd:string"/>
+													<xsd:element name="TRANS_TYPE" type="xsd:string"/>
+													<xsd:element name="DESC" type="xsd:string"/>
+													<xsd:element name="PAY_METHOD" type="xsd:string"/>
+													<xsd:element name="TRANS_AMT" type="xsd:string"/>
+													<xsd:element name="TRANS_DATE" type="xsd:string"/>
+													<xsd:element name="BALANCE" type="xsd:string"/>
+													<xsd:element name="REASON_NAME" type="xsd:string"/>
+													<xsd:element name="TAX" type="xsd:string"/>
+													<xsd:element name="TAX2" type="xsd:string"/>
+													<xsd:element name="TAX3" type="xsd:string"/>
+													<xsd:element name="TAX4" type="xsd:string"/>
+													<xsd:element name="CURRENCY" type="xsd:string"/>
+													<xsd:element name="PAYMENT_FLAG" type="xsd:string" />
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+										<xsd:element name="PREV_BILL">
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element name="BILLED_CHARGE_SUMM" >
+														<xsd:annotation>
+															<xsd:documentation>Tigo Requirement</xsd:documentation>
+														</xsd:annotation>
+														<xsd:complexType>
+															<xsd:sequence>
+																<xsd:element name="DISP_FEE_CATEGORY" maxOccurs="unbounded">
+																	<xsd:complexType>
+																		<xsd:sequence>
+																			<xsd:element name="CATEGORY_CHARGE_SUMM" maxOccurs="unbounded">
+																				<xsd:complexType>
+																					<xsd:sequence>
+																						<xsd:element name="DISP_FEE_ITEM_GROUP"/>
+																						<xsd:element name="CHG_FEE_WOTAX"/>
+																						<xsd:element name="CHG_FEE_WTAX" />
+																						<xsd:element name="DESC"/>
+																						<xsd:element name="CURRENCY"/>
+																						<xsd:element name="CYCLENO" />
+																						<xsd:element name="STARTDATE" />
+																						<xsd:element name="ENDDATE" />
+																						<xsd:element name="RATINGTAX1" />
+																						<xsd:element name="RATINGTAX2" />
+																						<xsd:element name="RATINGTAX3" />
+																						<xsd:element name="RATINGTAX4" />
+																						<xsd:element name="DISC1" />
+																						<xsd:element name="DISC2" />
+																						<xsd:element name="DISC3" />
+																						<xsd:element name="BILLINGTAX1" />
+																						<xsd:element name="BILLINGTAX2" />
+																						<xsd:element name="BILLINGTAX3" />
+																						<xsd:element name="BILLINGTAX4" />
+																						<xsd:element name="QUANTITY" />
+																						<xsd:element name="DURATION_VOLUME" />
+																					</xsd:sequence>
+																				</xsd:complexType>
+																			</xsd:element>
+																			<xsd:element name="CATEGORY_CHARGE_SUMM_SUBTOTAL">
+																				<xsd:complexType>
+																					<xsd:sequence>
+																						<xsd:element name="CHG_FEE_SUBTOTAL"/>
+																						<xsd:element name="CURRENCY"/>
+																					</xsd:sequence>
+																				</xsd:complexType>
+																			</xsd:element>
+																			<xsd:element name="CATEGORY_BILLING_TAX" maxOccurs="unbounded">
+																				<xsd:complexType>
+																					<xsd:sequence>
+																						<xsd:element name="TAX_AMT"/>
+																						<xsd:element name="TAXID"/>
+																						<xsd:element name="DESC"/>
+																						<xsd:element name="CURRENCY"/>
+																					</xsd:sequence>
+																				</xsd:complexType>
+																			</xsd:element>
+																		</xsd:sequence>
+																	</xsd:complexType>
+																</xsd:element>
+																<xsd:element name="CATEGORY_CHARGE_SUMM_TOTAL">
+																	<xsd:complexType>
+																		<xsd:sequence>
+																			<xsd:element name="CHG_FEE_SUBTOTAL"/>
+																			<xsd:element name="CURRENCY"/>
+																		</xsd:sequence>
+																	</xsd:complexType>
+																</xsd:element>
+															</xsd:sequence>
+														</xsd:complexType>
+													</xsd:element>
+													<xsd:element name="PREV_BALANCE" type="xsd:string"/>
+													<xsd:element name="BALANCE_FWD" type="xsd:string"/>
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+										<xsd:element name="CUR_BILL">
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element name="CHARGE" type="xsd:string"/>
+													<xsd:element name="NEW_CHARGE_WORDS" type="xsd:string">
+														<xsd:annotation>
+															<xsd:documentation>Tigo Requirement</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="CHARGE_WORDS" type="xsd:string" >
+														<xsd:annotation>
+															<xsd:documentation>Tigo PY Requirement</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="NEW_CHARGE" type="xsd:string"/>
+													<xsd:element name="DEBITS" type="xsd:string">
+														<xsd:annotation>
+															<xsd:documentation>Tigo Requirement(CR1026)</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="AR_CREDIT" type="xsd:string">
+														<xsd:annotation>
+															<xsd:documentation>Tigo Requirement(CR1026)</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="SPECIALCHARGES" type="xsd:string">
+														<xsd:annotation>
+															<xsd:documentation>Tigo CR1054 Requirement</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="NEW_CHARGE_INV" type="xsd:string">
+														<xsd:annotation>
+															<xsd:documentation>Tigo CR1054 Requirement</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="NEW_CHARGE_INV_WORDS" type="xsd:string">
+														<xsd:annotation>
+															<xsd:documentation>Tigo CR1054 Requirement</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+										<xsd:element name="BILL_BALANCE" >
+											<xsd:annotation>
+												<xsd:documentation>Previous Invoice Info… Applicable for Honduras HOME Invoice scenario</xsd:documentation>
+											</xsd:annotation>
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element name="CHARGE_OPEN" type="xsd:string" />
+													<xsd:element name="NEW_CHARGE" type="xsd:string" />
+													<xsd:element name="CHARGE_CLOSE" type="xsd:string" />
+													<xsd:element name="NEW_CREDIT" type="xsd:string" />
+													<xsd:element name="SALDO" type="xsd:string" />
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="MKT_MSG">
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="MSG_LINE"  maxOccurs="unbounded">
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element name="CAPTION" type="xsd:string" />
+													<xsd:element name="CONTENT" type="xsd:string" />
+													<xsd:element name="FONT" type="xsd:string" />
+													<xsd:element name="SIZE" type="xsd:string" />
+													<xsd:element name="COLOR" type="xsd:string" />
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>
