@@ -19,18 +19,33 @@ import hn.com.tigo.josm.persistence.core.ServiceSessionEJB;
 import hn.com.tigo.josm.persistence.core.ServiceSessionEJBLocal;
 import hn.com.tigo.josm.persistence.exception.PersistenceException;
 
+/**
+ * DeleteForReprocessThread.
+ *
+ * @author Yuny Rene Rodriguez Perez {@literal<mailto: yrodriguez@hightech-corp.com />}
+ * @version  1.0.0
+ * @since 08-30-2022 11:21:13 AM 2022
+ */
 public class DeleteForReprocessThread extends Thread {
 
+	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LogManager.getLogger(DeleteForReprocessThread.class);
 
+	/** The executor service. */
 	private ThreadPoolExecutor executorService;
 
+	/** The working queue. */
 	private BlockingQueue<Runnable> workingQueue;
 
+	/** The state. */
 	private States state;
 
+	/** The config params. */
 	private HashMap<String, String> configParams;
 
+	/**
+	 * Instantiates a new delete for reprocess thread.
+	 */
 	public DeleteForReprocessThread() {
 		try {
 			initialize();
@@ -40,6 +55,9 @@ public class DeleteForReprocessThread extends Thread {
 		}
 	}
 
+	/**
+	 * Initialize.
+	 */
 	public void initialize() {
 		workingQueue = new ArrayBlockingQueue<Runnable>(100);
 		LOGGER.info("workingQueue correctly");
@@ -48,11 +66,17 @@ public class DeleteForReprocessThread extends Thread {
 		LOGGER.info("Iinitialize Finalized.");
 	}
 
+	/**
+	 * Shutdown.
+	 */
 	public void shutdown() {
 		state = States.SHUTTINGDOWN;
 		executorService.shutdownNow();
 	}
 
+	/**
+	 * Run.
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void run() {
@@ -116,6 +140,11 @@ public class DeleteForReprocessThread extends Thread {
 
 	}
 
+	/**
+	 * Sleep thread.
+	 *
+	 * @param milliSecounds the milli secounds
+	 */
 	private void sleepThread(final int milliSecounds) {
 		try {
 			Thread.sleep(milliSecounds);

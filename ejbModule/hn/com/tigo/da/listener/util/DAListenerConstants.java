@@ -1,15 +1,16 @@
 package hn.com.tigo.da.listener.util;
 
+
 /**
  * DAListenerConstants.
  *
- * @author Yuny Rene Rodriguez Perez <mailto: yrodriguez@hightech-corp.com />
- * @version
- * @see
- * @since 07-08-2022 02:46:05 PM 2022
+ * @author Yuny Rene Rodriguez Perez {@literal<mailto: yrodriguez@hightech-corp.com />}
+ * @version  1.0.0
+ * @since 08-30-2022 11:21:55 AM 2022
  */
 public class DAListenerConstants {
 
+	/** The Constant JNDI. */
 	public static final String JNDI = "Bank";
 
 	/** Attribute that determine a Constant of JSON. */
@@ -318,8 +319,14 @@ public class DAListenerConstants {
 	/** Attribute that determine a Constant of BANK_BAC_CREDOMATIC. */
 	public static final String BANK_BAC_CREDOMATIC = "BANK_BAC_CREDOMATIC";
 	
+	/** The Constant STATUS_DEL_REPRO. */
 	public static final long STATUS_DEL_REPRO = 10;
 
+	/** The Constant RETRIES. */
 	public static final String RETRIES = "RETRIES";
+
+	public static final String PAYMENT_TYPE = "POSPAGO";
+
+	public static final Object WSDL_CBS_INVOICE_DA = "WSDL_CBS_INVOICE_DA";
 	
 }

@@ -31,6 +31,7 @@ com\tigo\enterprise\resources\parameters\simple\v1\schema\ParameterArray.class
 com\tigo\josm\gateway\services\order\simpleorderrequest\v1\DeactivateProduct.class
 hn\com\tigo\da\listener\model\InvoiceInfo.class
 com\tigo\josm\gateway\services\order\orderresponsedetail\v1\OrderResponseDetail.class
+hn\com\tigo\josm\orchestrator\adapter\cbs2\task\CBSQueryCustomerInfoTask.class
 hn\com\tigo\josm\orchestrator\adapter\cbs2\task\package-info.class
 hn\com\tigo\da\listener\model\JsonRequestCBSInvoice.class
 com\tigo\josm\gateway\services\order\additionalparameterdto\v1\package-info.class
@@ -53,6 +54,7 @@ com\tigo\josm\gateway\services\order\simpleorderrequest\v1\PurchaseProduct.class
 com\tigo\enterprise\resources\parameters\simple\v1\schema\ObjectFactory.class
 com\tigo\josm\gateway\services\order\simpleorderrequest\v1\TransferProduct.class
 hn\com\tigo\josm\adapter\requesttype\v1\TaskResponseType.class
+hn\com\tigo\josm\orchestrator\adapter\cbs2\task\CBSQueryCustomerInfoTaskService.class
 com\tigo\josm\gateway\services\order\orderresponsedetail\v1\package-info.class
 hn\com\tigo\da\listener\model\ListAdditionalProperty.class
 hn\com\tigo\da\listener\DeleteForReprocessThread.class

@@ -29,10 +29,6 @@ import com.google.gson.Gson;
 import com.jayway.jsonpath.JsonPath;
 import com.tigo.enterprise.resources.parameters.simple.v1.schema.ParameterArray;
 import com.tigo.enterprise.resources.parameters.simple.v1.schema.ParameterType;
-import com.tigo.josm.gateway.services.order.additionalparameterdto.v1.AdditionalParameters;
-import com.tigo.josm.gateway.services.order.additionalparameterdto.v1.Parameter;
-import com.tigo.josm.gateway.services.order.orderresponse.v1.OrderResponse;
-import com.tigo.josm.gateway.services.order.simpleorderrequest.v1.SimpleOrderRequest;
 
 import hn.com.tigo.core.da.dto.DABankFileIncluExcluDTO;
 import hn.com.tigo.core.da.dto.DABankIncluExcluDTO;
@@ -54,33 +50,47 @@ import hn.com.tigo.da.listener.model.InvoiceHeaderFilter;
 import hn.com.tigo.da.listener.model.InvoiceInfo;
 import hn.com.tigo.da.listener.model.JsonRequestCBSInvoice;
 import hn.com.tigo.da.listener.model.JsonResponseCBSInvoice;
-import hn.com.tigo.da.listener.model.JsonResponseOrder;
 import hn.com.tigo.da.listener.model.ListAdditionalProperty;
 import hn.com.tigo.da.listener.model.QueryObj;
 import hn.com.tigo.da.listener.util.DAListenerConstants;
 import hn.com.tigo.da.listener.util.DAListenerUtils;
 import hn.com.tigo.josm.adapter.requesttype.v1.TaskRequestType;
 import hn.com.tigo.josm.adapter.requesttype.v1.TaskResponseType;
-import hn.com.tigo.josm.gateway.services.gateway.ExecuteOrderService;
-import hn.com.tigo.josm.gateway.services.gateway.Order;
+import hn.com.tigo.josm.orchestrator.adapter.cbs2.task.CBSQueryCustomerInfoTask;
+import hn.com.tigo.josm.orchestrator.adapter.cbs2.task.CBSQueryCustomerInfoTaskService;
 import hn.com.tigo.josm.orchestrator.adapter.cbs2.task.CBSQueryInvoiceEnhancedTask;
 import hn.com.tigo.josm.orchestrator.adapter.cbs2.task.CBSQueryInvoiceEnhancedTaskService;
 import hn.com.tigo.josm.persistence.core.ServiceSessionEJB;
 import hn.com.tigo.josm.persistence.core.ServiceSessionEJBLocal;
 import hn.com.tigo.josm.persistence.exception.PersistenceException;
 
+/**
+ * GenerateFileBankThread.
+ *
+ * @author Yuny Rene Rodriguez Perez {@literal<mailto: yrodriguez@hightech-corp.com />}
+ * @version  1.0.0
+ * @since 08-30-2022 11:21:26 AM 2022
+ */
 public class GenerateFileBankThread extends Thread {
 
+	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LogManager.getLogger(GenerateFileBankThread.class);
 
+	/** The executor service. */
 	private ThreadPoolExecutor executorService;
 
+	/** The working queue. */
 	private BlockingQueue<Runnable> workingQueue;
 
+	/** The state. */
 	private States state;
 
+	/** The config params. */
 	private HashMap<String, String> configParams;
 
+	/**
+	 * Instantiates a new generate file bank thread.
+	 */
 	public GenerateFileBankThread() {
 		try {
 			initialize();
@@ -90,6 +100,9 @@ public class GenerateFileBankThread extends Thread {
 		}
 	}
 
+	/**
+	 * Initialize.
+	 */
 	public void initialize() {
 		workingQueue = new ArrayBlockingQueue<Runnable>(100);
 		LOGGER.info("workingQueue correctly");
@@ -98,11 +111,17 @@ public class GenerateFileBankThread extends Thread {
 		LOGGER.info("Iinitialize Finalized.");
 	}
 
+	/**
+	 * Shutdown.
+	 */
 	public void shutdown() {
 		state = States.SHUTTINGDOWN;
 		executorService.shutdownNow();
 	}
 
+	/**
+	 * Run.
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void run() {
@@ -281,7 +300,7 @@ public class GenerateFileBankThread extends Thread {
 								fileInPut = configParams.get(DAListenerConstants.CREDOMATIC_CONST)
 										+ spaceZero(getCycles(cycle, DAListenerConstants.BAC, manager), 3)
 										+ spaceZero(String.valueOf(listGroupPayment.size()), 6)
-										+ spaceZero(amountFinal.replace(DAListenerConstants.DOT_CHAR, ""), 12) + "\n";
+										+ spaceZero(amountFinal.replace(DAListenerConstants.DOT_CHAR, ""), 12) + "\r\n";
 
 								for (int d = 0; d < listBacMovil.size(); d++) {
 									fileInPut = fileInPut + listBacMovil.get(d).getType()
@@ -290,7 +309,7 @@ public class GenerateFileBankThread extends Thread {
 											+ spaceZero(listBacMovil.get(d).getNumRef(), 10)
 											+ spaceZero(listBacMovil.get(d).getAmount(), 10)
 											+ spaceZero(listBacMovil.get(d).getSequence(), 5) + " "
-											+ spaceZero(listBacMovil.get(d).getTax(), 13) + "\n";
+											+ spaceZero(listBacMovil.get(d).getTax(), 13) + "\r\n";
 								}
 
 								// Se genera archivo Inclusiones y exclusiones
@@ -322,7 +341,7 @@ public class GenerateFileBankThread extends Thread {
 														listbankIE.get(h).getAnexo() + "Generated ExluInclu",
 														listBP.get(i).getId()), 16)
 												+ dft.format(cycleCalendar.getTime()) + listbankIE.get(h).getExpDate()
-												+ "\n";
+												+ "\r\n";
 
 									}
 
@@ -402,111 +421,111 @@ public class GenerateFileBankThread extends Thread {
 								for (int g = 0; g < listGroupPayment.size(); g++) {
 
 									URL url = null;
-									Order order = null;
+									CBSQueryCustomerInfoTask order = null;
 
 									try {
-										url = new URL(configParams.get(DAListenerConstants.WSDL_EXOR_COMPLEX));
-										order = new ExecuteOrderService(url).getExecuteOrderPort();
+										
+										url = new URL(configParams.get(DAListenerConstants.WSDL_CBS_INVOICE_DA));
+										order = new CBSQueryCustomerInfoTaskService(url).getCBSQueryCustomerInfoTaskPort();
+										
 									} catch (Exception e1) {
 										LOGGER.error(
-												"ERROR: creacion de consumo ExecuteOrderService: " + e1.getMessage());
+												"ERROR: creacion de consumo QueryCustomerService: " + e1.getMessage());
 										e1.printStackTrace();
 										String uuidEr = UUID.randomUUID().toString();
 										manager.insertLogs(uuidEr, DAListenerConstants.TYPE_ERROR1,
-												"ERROR: creacion de consumo ExecuteOrderService "
+												"ERROR: creacion de consumo QueryCustomerService "
 														+ listGroupPayment.get(g).getAcctFather() + " ==> "
 														+ e1.getMessage(),
 												listBP.get(i).getId(), "");
 									}
 
 									String accountCode = listGroupPayment.get(g).getAcctFather();
-
-									List<Parameter> parameter = obtainParameters(accountCode);
-									AdditionalParameters additionalParameters = DAListenerUtils
-											.getAdditionalParameters(parameter);
-
-									OrderResponse orderResponse = null;
-									SimpleOrderRequest request = null;
+				
+									TaskResponseType orderResponse = null;
+									TaskRequestType request = null;
 									String uuid = UUID.randomUUID().toString();
 
 									try {
-										request = DAListenerUtils.getRequestOrder(accountCode, additionalParameters,
-												configParams.get(DAListenerConstants.COMMENT_TRANSFER),
-												DAListenerConstants.CHANNEL_ID_98,
-												Long.valueOf(configParams.get(DAListenerConstants.PRODUCT_ID)));
+										
+										request = getRequestCBSQueryCustomer(accountCode);
 										JSONObject jsonObject = new JSONObject(request);
 
-										orderResponse = order.transferProduct(request);
+										orderResponse = order.executeTask(request);
 
 										manager.insertLogs(uuid,
-												(orderResponse.getCode() != 0 ? DAListenerConstants.TYPE_ERROR2
+												(orderResponse.getResponseCode() != 0 ? DAListenerConstants.TYPE_ERROR2
 														: DAListenerConstants.TYPE_ERROR0),
-												"Consumo de servicio ExecuteOrderService; Consulta informacion cliente "
-														+ (orderResponse.getCode() != 0 ? orderResponse.getMessage()
-																: orderResponse.getOrderResponseDetail().get(0)
-																		.getParameters().getParameter().get(1)
-																		.getValue()),
+												"Consumo de servicio QueryCustomerService; Consulta informacion cliente "
+														+ orderResponse.getResponseDescription(),
 												listBP.get(i).getId(), jsonObject.toString());
+										
+										String idNumber = "";
+
+										if (orderResponse != null) {
+											String response = orderResponse.getParameters().getParameter().get(0).getValue();
+
+											JSONObject responseQC = new JSONObject(response);
+											JSONObject resultMsg = responseQC.getJSONObject("QueryCustomerInfoResultMsg");
+											JSONObject infoResult = resultMsg.getJSONObject("QueryCustomerInfoResult");
+											JSONObject resultAccount = infoResult.getJSONObject("Account");
+											JSONObject resultAcctInfo = resultAccount.getJSONObject("AcctInfo");
+											JSONObject resultUsCust = resultAcctInfo.getJSONObject("UserCustomer");
+											JSONObject resultIndInf = resultUsCust.getJSONObject("IndividualInfo");
+											idNumber = resultIndInf.get("IDNumber").toString();
+										}
+
+										if (!idNumber.equals("")) {
+											
+											double amountFather = Double.valueOf(listGroupPayment.get(g).getAmountFather());
+											double taxAmountFather = Double
+													.valueOf(listGroupPayment.get(g).getTaxAmountFather()) / 1000000;
+
+											BigDecimal bd2 = new BigDecimal(taxAmountFather).setScale(2,
+													RoundingMode.HALF_UP);
+											double taxFinal = bd2.doubleValue();
+
+											FicMovilModel ficModel = new FicMovilModel();
+
+											ficModel.setTelef3(listGroupPayment.get(g).getSubscriberId());
+											ficModel.setAnoxofi(listGroupPayment.get(g).getAcctFather());
+											ficModel.setConpos(DAListenerConstants.PAYMENT_TYPE);
+											ficModel.setEdenti(idNumber);
+
+											ficModel.setTajetaFic(methodGet(listGroupPayment.get(g).getNoCard(),
+													DAListenerConstants.CRED_TAR_DECRYPT, manager,
+													listGroupPayment.get(g).getAcctFather(),
+													listGroupPayment.get(g).getIdBankProcess()));
+
+											String amountWithZero = addZeroDecimal(String.valueOf(amountFather));
+											ficModel.setValorFi(amountWithZero);
+
+											String taxWithZero = addZeroDecimal(String.valueOf(taxFinal));
+											ficModel.setImpuesto1(taxWithZero);
+											ficModel.setImpuesto2(configParams.get(DAListenerConstants.IMPUESTO2));
+											ficModel.setMonedaFi(configParams.get(DAListenerConstants.LPS));
+											ficModel.setTasa2Fi(configParams.get(DAListenerConstants.TASA2FI));
+											ficModel.setLeyenda(configParams.get(DAListenerConstants.LEYENDA)
+													+ listGroupPayment.get(g).getInvoiceId());
+
+											listFicMovil.add(ficModel);
+
+										}
 
 									} catch (Exception e) {
 
 										LOGGER.error(
-												"ERROR: en consumo de servicio ExecuteOrderService: " + e.getMessage());
+												"ERROR: en consumo de servicio QueryCustomerService: Consulta informacion cliente " + e.getMessage());
 										e.printStackTrace();
 										JSONObject jsonObject = new JSONObject(request);
 
 										manager.insertLogs(uuid, DAListenerConstants.TYPE_ERROR2,
-												"Error de Consumo Servicio ExecuteOrderService "
+												"Error de Consumo Servicio QueryCustomerService Consulta informacion cliente "
 														+ listGroupPayment.get(g).getAcctFather() + " ==> "
 														+ e.getMessage(),
 												listBP.get(i).getId(), jsonObject.toString());
 									}
-									JsonResponseOrder jsonResponse = null;
-
-									if (orderResponse != null) {
-										String response = orderResponse.getOrderResponseDetail().get(0).getParameters()
-												.getParameter().get(2).getValue();
-										LOGGER.info(response);
-
-										Gson gson = new Gson();
-										jsonResponse = gson.fromJson(response, JsonResponseOrder.class);
-									}
-
-									if (jsonResponse != null) {
-										double amountFather = Double.valueOf(listGroupPayment.get(g).getAmountFather());
-										double taxAmountFather = Double
-												.valueOf(listGroupPayment.get(g).getTaxAmountFather()) / 1000000;
-
-										BigDecimal bd2 = new BigDecimal(taxAmountFather).setScale(2,
-												RoundingMode.HALF_UP);
-										double taxFinal = bd2.doubleValue();
-
-										FicMovilModel ficModel = new FicMovilModel();
-
-										ficModel.setTelef3(listGroupPayment.get(g).getSubscriberId());
-										ficModel.setAnoxofi(listGroupPayment.get(g).getAcctFather());
-										ficModel.setConpos(jsonResponse.getPaymentType());
-										ficModel.setEdenti(jsonResponse.getIDNumber());
-
-										ficModel.setTajetaFic(methodGet(listGroupPayment.get(g).getNoCard(),
-												DAListenerConstants.CRED_TAR_DECRYPT, manager,
-												listGroupPayment.get(g).getAcctFather(),
-												listGroupPayment.get(g).getIdBankProcess()));
-
-										String amountWithZero = addZeroDecimal(String.valueOf(amountFather));
-										ficModel.setValorFi(amountWithZero);
-
-										String taxWithZero = addZeroDecimal(String.valueOf(taxFinal));
-										ficModel.setImpuesto1(taxWithZero);
-										ficModel.setImpuesto2(configParams.get(DAListenerConstants.IMPUESTO2));
-										ficModel.setMonedaFi(configParams.get(DAListenerConstants.LPS));
-										ficModel.setTasa2Fi(configParams.get(DAListenerConstants.TASA2FI));
-										ficModel.setLeyenda(configParams.get(DAListenerConstants.LEYENDA)
-												+ listGroupPayment.get(g).getInvoiceId());
-
-										listFicMovil.add(ficModel);
-
-									}
+								
 								}
 
 								String cycle = DAListenerUtils.getCycle(listBP.get(i).getCycle());
@@ -533,7 +552,7 @@ public class GenerateFileBankThread extends Thread {
 											+ spaceZero(listFicMovil.get(d).getImpuesto1(), 13) + ";"
 											+ listFicMovil.get(d).getImpuesto2() + ";"
 											+ listFicMovil.get(d).getMonedaFi() + ";" + listFicMovil.get(d).getTasa2Fi()
-											+ ";" + listFicMovil.get(d).getLeyenda() + "\n";
+											+ ";" + listFicMovil.get(d).getLeyenda() + "\r\n";
 								}
 
 								List<DAFieldStringDTO> sizeVal = manager.countValidate(listBP.get(i).getId(), 0);
@@ -619,15 +638,18 @@ public class GenerateFileBankThread extends Thread {
 
 	}
 
-	private List<Parameter> obtainParameters(String accountCode) {
-		List<Parameter> parameter = new ArrayList<Parameter>();
-		parameter = DAListenerUtils.obtainParameter(parameter, DAListenerConstants.ID_TYPE,
-				DAListenerConstants.ACCTCODE);
 
-		parameter = DAListenerUtils.obtainParameter(parameter, DAListenerConstants.ID, accountCode);
-		return parameter;
-	}
-
+	/**
+	 * Insert bank process detail.
+	 *
+	 * @param manager the manager
+	 * @param listBP the list BP
+	 * @param i the i
+	 * @param bankProcessor the bank processor
+	 * @param urlEmail the url email
+	 * @return the int
+	 * @throws PersistenceException the persistence exception
+	 */
 	private int InsertBankProcessDetail(DAManager manager, final List<DABankProcessDTO> listBP, int i,
 			String bankProcessor, URL urlEmail) throws PersistenceException {
 
@@ -746,6 +768,21 @@ public class GenerateFileBankThread extends Thread {
 		return listCI.size();
 	}
 
+	/**
+	 * Insert BP detail.
+	 *
+	 * @param manager the manager
+	 * @param listBP the list BP
+	 * @param i the i
+	 * @param listCI the list CI
+	 * @param a the a
+	 * @param request the request
+	 * @param invoiceInfo the invoice info
+	 * @param gson the gson
+	 * @param listInvoice the list invoice
+	 * @param c the c
+	 * @throws PersistenceException the persistence exception
+	 */
 	private void insertBPDetail(DAManager manager, final List<DABankProcessDTO> listBP, int i,
 			List<DACardInfoDTO> listCI, int a, TaskRequestType request, String invoiceInfo, Gson gson,
 			List<InvoiceInfo> listInvoice, int c) throws PersistenceException {
@@ -811,6 +848,11 @@ public class GenerateFileBankThread extends Thread {
 		}
 	}
 
+	/**
+	 * Sleep thread.
+	 *
+	 * @param milliSecounds the milli secounds
+	 */
 	private void sleepThread(final int milliSecounds) {
 		try {
 			Thread.sleep(milliSecounds);
@@ -819,6 +861,12 @@ public class GenerateFileBankThread extends Thread {
 		}
 	}
 
+	/**
+	 * Gets the request CBS invoice.
+	 *
+	 * @param accountCode the account code
+	 * @return the request CBS invoice
+	 */
 	private TaskRequestType getRequestCBSInvoice(final String accountCode) {
 
 		TaskRequestType taskRequestType = new TaskRequestType();
@@ -852,7 +900,45 @@ public class GenerateFileBankThread extends Thread {
 
 		return taskRequestType;
 	}
+	
+	private TaskRequestType getRequestCBSQueryCustomer(final String accountCode) {
 
+		TaskRequestType taskRequestType = new TaskRequestType();
+		ParameterArray parameterArray = new ParameterArray();
+		ParameterType parameterType = new ParameterType();
+	
+		parameterType.setName(DAListenerConstants.JSON);
+		parameterType.setValue("{\r\n" + 
+				"	\"queryObj\": {\r\n" + 
+				"		\"acctAccessCode\": {\r\n" + 
+				"			\"accountCode\": \""+accountCode+"\",\r\n" + 
+				"			\"payType\":\"2\"\r\n" + 
+				"		}\r\n" + 
+				"	}\r\n" + 
+				"}");
+
+		parameterArray.getParameter().add(parameterType);
+		taskRequestType.setParameters(parameterArray);
+
+		return taskRequestType;
+	}
+
+	/**
+	 * Construct ban process.
+	 *
+	 * @param id the id
+	 * @param sequence the sequence
+	 * @param amount the amount
+	 * @param countClient the count client
+	 * @param status the status
+	 * @param dateInit the date init
+	 * @param dateEnd the date end
+	 * @param base64 the base 64
+	 * @param fileNameDA the file name DA
+	 * @param fileNameBank the file name bank
+	 * @param uudInluExclu the uud inlu exclu
+	 * @return the DA bank process DTO
+	 */
 	private DABankProcessDTO constructBanProcess(final String id, final String sequence, final String amount,
 			final long countClient, final long status, final Date dateInit, final Date dateEnd, final String base64,
 			final String fileNameDA, final String fileNameBank, final String uudInluExclu) {
@@ -871,6 +957,15 @@ public class GenerateFileBankThread extends Thread {
 		return dto;
 	}
 
+	/**
+	 * Gets the cycles.
+	 *
+	 * @param cycleCBS the cycle CBS
+	 * @param nameCycle the name cycle
+	 * @param manager the manager
+	 * @return the cycles
+	 * @throws PersistenceException the persistence exception
+	 */
 	private String getCycles(final String cycleCBS, final String nameCycle, DAManager manager)
 			throws PersistenceException {
 
@@ -885,6 +980,16 @@ public class GenerateFileBankThread extends Thread {
 		return null;
 	}
 
+	/**
+	 * Delete word.
+	 *
+	 * @param response the response
+	 * @param word the word
+	 * @param word2 the word 2
+	 * @param word3 the word 3
+	 * @param word4 the word 4
+	 * @return the string
+	 */
 	private String deleteWord(String response, String word, String word2, String word3, String word4) {
 
 		if (response.contains(word)) {
@@ -902,6 +1007,13 @@ public class GenerateFileBankThread extends Thread {
 		return response;
 	}
 
+	/**
+	 * Space zero.
+	 *
+	 * @param value the value
+	 * @param cantDigit the cant digit
+	 * @return the string
+	 */
 	private String spaceZero(String value, final int cantDigit) {
 
 		if (value != null) {
@@ -922,6 +1034,13 @@ public class GenerateFileBankThread extends Thread {
 		return value;
 	}
 
+	/**
+	 * Space empty.
+	 *
+	 * @param value the value
+	 * @param cantDigit the cant digit
+	 * @return the string
+	 */
 	private String spaceEmpty(String value, final int cantDigit) {
 
 		if (value.length() > cantDigit) {
@@ -935,6 +1054,17 @@ public class GenerateFileBankThread extends Thread {
 		return value;
 	}
 
+	/**
+	 * Method get.
+	 *
+	 * @param noCard the no card
+	 * @param type the type
+	 * @param manager the manager
+	 * @param acctCode the acct code
+	 * @param bankProcessId the bank process id
+	 * @return the string
+	 * @throws PersistenceException the persistence exception
+	 */
 	private String methodGet(String noCard, String type, DAManager manager, String acctCode, String bankProcessId)
 			throws PersistenceException {
 		StringBuffer content = null;
@@ -947,8 +1077,8 @@ public class GenerateFileBankThread extends Thread {
 			URL url = new URL(urlFinal);
 			HttpURLConnection con = (HttpURLConnection) url.openConnection();
 			con.setRequestMethod("GET");
-			con.setConnectTimeout(5000);
-			con.setReadTimeout(5000);
+			con.setConnectTimeout(15000);
+			con.setReadTimeout(15000);
 
 			BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
 			String inputLine;
@@ -971,6 +1101,19 @@ public class GenerateFileBankThread extends Thread {
 		return content.toString();
 	}
 
+	/**
+	 * Obtain model response.
+	 *
+	 * @param json the json
+	 * @param jsonPath the json path
+	 * @param attribute the attribute
+	 * @param manager the manager
+	 * @param request the request
+	 * @param acctCode the acct code
+	 * @param bankProcessId the bank process id
+	 * @return the string
+	 * @throws PersistenceException the persistence exception
+	 */
 	private String ObtainModelResponse(String json, String jsonPath, String attribute, DAManager manager,
 			String request, String acctCode, String bankProcessId) throws PersistenceException {
 		String jsonTemporary = obtainPathValueFromJson(json, jsonPath, manager, request, acctCode, bankProcessId);
@@ -989,6 +1132,18 @@ public class GenerateFileBankThread extends Thread {
 		return null;
 	}
 
+	/**
+	 * Obtain response invoice.
+	 *
+	 * @param json the json
+	 * @param attribute the attribute
+	 * @param manager the manager
+	 * @param request the request
+	 * @param acctCode the acct code
+	 * @param bankProcessId the bank process id
+	 * @return the string
+	 * @throws PersistenceException the persistence exception
+	 */
 	private String ObtainResponseInvoice(String json, String attribute, DAManager manager, String request,
 			String acctCode, String bankProcessId) throws PersistenceException {
 		String jsonTemporary = obtainPathValueFromInvoice(json, manager, request, acctCode, bankProcessId);
@@ -1007,6 +1162,18 @@ public class GenerateFileBankThread extends Thread {
 		return null;
 	}
 
+	/**
+	 * Obtain path value from json.
+	 *
+	 * @param json the json
+	 * @param pathJson the path json
+	 * @param manager the manager
+	 * @param request the request
+	 * @param acctCode the acct code
+	 * @param bankProcessId the bank process id
+	 * @return the string
+	 * @throws PersistenceException the persistence exception
+	 */
 	public static String obtainPathValueFromJson(String json, String pathJson, DAManager manager, String request,
 			String acctCode, String bankProcessId) throws PersistenceException {
 		String value = null;
@@ -1027,6 +1194,17 @@ public class GenerateFileBankThread extends Thread {
 		return value;
 	}
 
+	/**
+	 * Obtain path value from invoice.
+	 *
+	 * @param json the json
+	 * @param manager the manager
+	 * @param request the request
+	 * @param acctCode the acct code
+	 * @param bankProcessId the bank process id
+	 * @return the string
+	 * @throws PersistenceException the persistence exception
+	 */
 	public static String obtainPathValueFromInvoice(String json, DAManager manager, String request, String acctCode,
 			String bankProcessId) throws PersistenceException {
 		String value = null;
@@ -1052,6 +1230,12 @@ public class GenerateFileBankThread extends Thread {
 		return value;
 	}
 
+	/**
+	 * Adds the zero decimal.
+	 *
+	 * @param number the number
+	 * @return the string
+	 */
 	private String addZeroDecimal(String number) {
 
 		String[] parts = number.split("\\.");

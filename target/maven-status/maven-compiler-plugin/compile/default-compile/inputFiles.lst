@@ -24,9 +24,11 @@ C:\Users\HTC\eclipse-workspace6\DAProcessListener\ejbModule\hn\com\tigo\da\liste
 C:\Users\HTC\eclipse-workspace6\DAProcessListener\target\generated-sources\wsimport\com\tigo\enterprise\resources\order\parameters\simple\v1\schema\ObjectFactory.java
 C:\Users\HTC\eclipse-workspace6\DAProcessListener\target\generated-sources\wsimport\hn\tigo\resources\emailservice\AttachmentDto.java
 C:\Users\HTC\eclipse-workspace6\DAProcessListener\target\generated-sources\wsimport\hn\tigo\resources\emailservice\SentDTO.java
+C:\Users\HTC\eclipse-workspace6\DAProcessListener\target\generated-sources\wsimport\hn\com\tigo\josm\orchestrator\adapter\cbs2\task\CBSQueryCustomerInfoTaskService.java
 C:\Users\HTC\eclipse-workspace6\DAProcessListener\target\generated-sources\wsimport\hn\com\tigo\josm\orchestrator\adapter\cbs2\task\AdapterException.java
 C:\Users\HTC\eclipse-workspace6\DAProcessListener\target\generated-sources\wsimport\hn\com\tigo\josm\orchestrator\adapter\cbs2\task\package-info.java
 C:\Users\HTC\eclipse-workspace6\DAProcessListener\target\generated-sources\wsimport\hn\tigo\resources\emailservice\ToDto.java
+C:\Users\HTC\eclipse-workspace6\DAProcessListener\target\generated-sources\wsimport\hn\com\tigo\josm\orchestrator\adapter\cbs2\task\CBSQueryCustomerInfoTask.java
 C:\Users\HTC\eclipse-workspace6\DAProcessListener\target\generated-sources\wsimport\com\tigo\josm\gateway\services\order\simpleorderrequest\v1\DeactivateProductResponse.java
 C:\Users\HTC\eclipse-workspace6\DAProcessListener\target\generated-sources\wsimport\hn\com\tigo\josm\orchestrator\adapter\cbs2\task\CBSQueryInvoiceEnhancedTaskService.java
 C:\Users\HTC\eclipse-workspace6\DAProcessListener\target\generated-sources\wsimport\hn\tigo\resources\emailservice\AttachmentsDTO.java

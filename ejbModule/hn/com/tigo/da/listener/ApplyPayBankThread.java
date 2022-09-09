@@ -41,18 +41,33 @@ import hn.com.tigo.josm.persistence.core.ServiceSessionEJB;
 import hn.com.tigo.josm.persistence.core.ServiceSessionEJBLocal;
 import hn.com.tigo.josm.persistence.exception.PersistenceException;
 
+/**
+ * ApplyPayBankThread.
+ *
+ * @author Yuny Rene Rodriguez Perez {@literal<mailto: yrodriguez@hightech-corp.com />}
+ * @version  1.0.0
+ * @since 08-30-2022 11:20:48 AM 2022
+ */
 public class ApplyPayBankThread extends Thread {
 
+	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LogManager.getLogger(ApplyPayBankThread.class);
 
+	/** The executor service. */
 	private ThreadPoolExecutor executorService;
 
+	/** The working queue. */
 	private BlockingQueue<Runnable> workingQueue;
 
+	/** The state. */
 	private States state;
 
+	/** The config params. */
 	private HashMap<String, String> configParams;
 
+	/**
+	 * Instantiates a new apply pay bank thread.
+	 */
 	public ApplyPayBankThread() {
 		try {
 			initialize();
@@ -62,6 +77,9 @@ public class ApplyPayBankThread extends Thread {
 		}
 	}
 
+	/**
+	 * Initialize.
+	 */
 	public void initialize() {
 		workingQueue = new ArrayBlockingQueue<Runnable>(100);
 		LOGGER.info("workingQueue correctly");
@@ -70,11 +88,17 @@ public class ApplyPayBankThread extends Thread {
 		LOGGER.info("Iinitialize Finalized.");
 	}
 
+	/**
+	 * Shutdown.
+	 */
 	public void shutdown() {
 		state = States.SHUTTINGDOWN;
 		executorService.shutdownNow();
 	}
 
+	/**
+	 * Run.
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void run() {
@@ -114,10 +138,10 @@ public class ApplyPayBankThread extends Thread {
 						BPiD = listBase64Bank.get(a).getId();
 
 						if (listBase64Bank.get(a).getBase64Bank() != null) {
-							
+
 							// Se decodifica el base64 a string
 							byte[] base64 = Base64.getDecoder().decode(listBase64Bank.get(a).getBase64Bank());
-							String base64Final = new String(base64, StandardCharsets.UTF_8);
+							String base64Final = new String(base64, StandardCharsets.UTF_8).replaceAll("\r\n", "\n");
 
 							// Se identifica de que banco procede
 							if (configParams.get(DAListenerConstants.BAC_ID)
@@ -125,7 +149,7 @@ public class ApplyPayBankThread extends Thread {
 								bankProcessor = configParams.get(DAListenerConstants.BANK_PROC_BAC);
 
 								String cycle = DAListenerUtils.getCycle(listBase64Bank.get(a).getCycle());
-
+								
 								String[] parts = base64Final.split("\n");
 								parts = ArrayUtils.remove(parts, parts.length - 1);
 
@@ -189,11 +213,11 @@ public class ApplyPayBankThread extends Thread {
 									}
 								}
 
-								List<DABankProcessDetailPayDTO> listApplyPayError = manager
-										.selectApplyPayError(listBase64Bank.get(a).getId(), DAListenerConstants.STATUS_NEG1,
-												DAListenerConstants.CODE_SUCCESS);
+								List<DABankProcessDetailPayDTO> listApplyPayError = manager.selectApplyPayError(
+										listBase64Bank.get(a).getId(), DAListenerConstants.STATUS_NEG1,
+										DAListenerConstants.CODE_SUCCESS);
 
-								retriesPayError(manager, bankProcessor, cycleCalendar, df, listBase64Bank, a,
+								retriesPayError(manager, DAListenerConstants.BANK_BAC_CREDOMATIC, cycleCalendar, df, listBase64Bank, a,
 										listApplyPayError);
 
 								List<DAFieldStringDTO> sizeVal = manager.countValidate(listBase64Bank.get(a).getId(),
@@ -313,7 +337,7 @@ public class ApplyPayBankThread extends Thread {
 										listBase64Bank.get(a).getId(), DAListenerConstants.STATUS_NEG1,
 										DAListenerConstants.CODE_SUCCESS);
 
-								retriesPayError(manager, bankProcessor, cycleCalendar, df, listBase64Bank, a,
+								retriesPayError(manager, DAListenerConstants.BANK_PROC_FICOHSA, cycleCalendar, df, listBase64Bank, a,
 										listApplyPayError);
 
 								List<DAFieldStringDTO> sizeVal = manager.countValidate(listBase64Bank.get(a).getId(),
@@ -410,6 +434,18 @@ public class ApplyPayBankThread extends Thread {
 
 	}
 
+	/**
+	 * Retries pay error.
+	 *
+	 * @param manager the manager
+	 * @param bankProcessor the bank processor
+	 * @param cycleCalendar the cycle calendar
+	 * @param df the df
+	 * @param listBase64Bank the list base 64 bank
+	 * @param a the a
+	 * @param listApplyPayError the list apply pay error
+	 * @throws PersistenceException the persistence exception
+	 */
 	private void retriesPayError(DAManager manager, String bankProcessor, Calendar cycleCalendar,
 			final SimpleDateFormat df, final List<DABankProcessDTO> listBase64Bank, int a,
 			List<DABankProcessDetailPayDTO> listApplyPayError) throws PersistenceException {
@@ -543,6 +579,17 @@ public class ApplyPayBankThread extends Thread {
 		}
 	}
 
+	/**
+	 * Apply pay by register.
+	 *
+	 * @param manager the manager
+	 * @param cycleCalendar the cycle calendar
+	 * @param df the df
+	 * @param listAccSons the list acc sons
+	 * @param acctSons the acct sons
+	 * @param bankProccesor the bank proccesor
+	 * @throws PersistenceException the persistence exception
+	 */
 	private void applyPayByRegister(DAManager manager, Calendar cycleCalendar, final SimpleDateFormat df,
 			final List<DAGroupPaymentDTO> listAccSons, String[] acctSons, String bankProccesor)
 			throws PersistenceException {
@@ -554,6 +601,14 @@ public class ApplyPayBankThread extends Thread {
 		}
 	}
 
+	/**
+	 * Update bank proc detail pay.
+	 *
+	 * @param manager the manager
+	 * @param acctSons the acct sons
+	 * @param errorBank the error bank
+	 * @throws PersistenceException the persistence exception
+	 */
 	private void updateBankProcDetailPay(DAManager manager, String[] acctSons, String errorBank)
 			throws PersistenceException {
 		for (int c = 0; c < acctSons.length; c++) {
@@ -564,6 +619,19 @@ public class ApplyPayBankThread extends Thread {
 		}
 	}
 
+	/**
+	 * Apply pay.
+	 *
+	 * @param manager the manager
+	 * @param cycleCalendar the cycle calendar
+	 * @param df the df
+	 * @param acctCode the acct code
+	 * @param listAccSons the list acc sons
+	 * @param errorBank the error bank
+	 * @param groupPayment the group payment
+	 * @param bankProcessor the bank processor
+	 * @throws PersistenceException the persistence exception
+	 */
 	private void applyPay(DAManager manager, Calendar cycleCalendar, final SimpleDateFormat df, String acctCode,
 			final List<DAGroupPaymentDTO> listAccSons, String errorBank, long groupPayment, String bankProcessor)
 			throws PersistenceException {
@@ -671,6 +739,17 @@ public class ApplyPayBankThread extends Thread {
 		}
 	}
 
+	/**
+	 * Obtain parameters.
+	 *
+	 * @param accountCode the account code
+	 * @param subscriberId the subscriber id
+	 * @param invoiceId the invoice id
+	 * @param date the date
+	 * @param amount the amount
+	 * @param bankProcessor the bank processor
+	 * @return the list
+	 */
 	private List<Parameter> obtainParameters(String accountCode, String subscriberId, String invoiceId, String date,
 			String amount, String bankProcessor) {
 		List<Parameter> parameter = new ArrayList<Parameter>();
@@ -704,6 +783,11 @@ public class ApplyPayBankThread extends Thread {
 		return parameter;
 	}
 
+	/**
+	 * Sleep thread.
+	 *
+	 * @param milliSecounds the milli secounds
+	 */
 	private void sleepThread(final int milliSecounds) {
 		try {
 			Thread.sleep(milliSecounds);
@@ -712,6 +796,12 @@ public class ApplyPayBankThread extends Thread {
 		}
 	}
 
+	/**
+	 * Removes the zero.
+	 *
+	 * @param acctCode the acct code
+	 * @return the string
+	 */
 	private String removeZero(String acctCode) {
 
 		for (int i = 0; i < acctCode.length();) {

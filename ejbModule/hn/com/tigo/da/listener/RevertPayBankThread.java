@@ -39,18 +39,33 @@ import hn.com.tigo.josm.persistence.core.ServiceSessionEJB;
 import hn.com.tigo.josm.persistence.core.ServiceSessionEJBLocal;
 import hn.com.tigo.josm.persistence.exception.PersistenceException;
 
+/**
+ * RevertPayBankThread.
+ *
+ * @author Yuny Rene Rodriguez Perez {@literal<mailto: yrodriguez@hightech-corp.com />}
+ * @version  1.0.0
+ * @since 08-30-2022 11:21:35 AM 2022
+ */
 public class RevertPayBankThread extends Thread {
 
+	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LogManager.getLogger(RevertPayBankThread.class);
 
+	/** The executor service. */
 	private ThreadPoolExecutor executorService;
 
+	/** The working queue. */
 	private BlockingQueue<Runnable> workingQueue;
 
+	/** The state. */
 	private States state;
 
+	/** The config params. */
 	private HashMap<String, String> configParams;
 
+	/**
+	 * Instantiates a new revert pay bank thread.
+	 */
 	public RevertPayBankThread() {
 		try {
 			initialize();
@@ -60,6 +75,9 @@ public class RevertPayBankThread extends Thread {
 		}
 	}
 
+	/**
+	 * Initialize.
+	 */
 	public void initialize() {
 		workingQueue = new ArrayBlockingQueue<Runnable>(100);
 		LOGGER.info("workingQueue correctly");
@@ -68,11 +86,17 @@ public class RevertPayBankThread extends Thread {
 		LOGGER.info("Iinitialize Finalized.");
 	}
 
+	/**
+	 * Shutdown.
+	 */
 	public void shutdown() {
 		state = States.SHUTTINGDOWN;
 		executorService.shutdownNow();
 	}
 
+	/**
+	 * Run.
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void run() {
@@ -252,6 +276,16 @@ public class RevertPayBankThread extends Thread {
 
 	}
 
+	/**
+	 * Revert pay.
+	 *
+	 * @param manager the manager
+	 * @param cycleCalendar the cycle calendar
+	 * @param df the df
+	 * @param listBankProcess the list bank process
+	 * @param a the a
+	 * @throws PersistenceException the persistence exception
+	 */
 	private void revertPay(DAManager manager, Calendar cycleCalendar, final SimpleDateFormat df,
 			final List<DABankProcessDTO> listBankProcess, int a) throws PersistenceException {
 
@@ -352,6 +386,11 @@ public class RevertPayBankThread extends Thread {
 		}
 	}
 
+	/**
+	 * Sleep thread.
+	 *
+	 * @param milliSecounds the milli secounds
+	 */
 	private void sleepThread(final int milliSecounds) {
 		try {
 			Thread.sleep(milliSecounds);
@@ -360,6 +399,14 @@ public class RevertPayBankThread extends Thread {
 		}
 	}
 
+	/**
+	 * Obtain parameters.
+	 *
+	 * @param accountCode the account code
+	 * @param paymentSeq the payment seq
+	 * @param date the date
+	 * @return the list
+	 */
 	private List<Parameter> obtainParameters(String accountCode, String paymentSeq, String date) {
 
 		List<Parameter> parameter = new ArrayList<Parameter>();

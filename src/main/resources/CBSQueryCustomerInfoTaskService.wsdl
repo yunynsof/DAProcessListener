@@ -1,0 +1,49 @@
+<definitions xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://task.cbs2.adapter.orchestrator.josm.tigo.com.hn/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://task.cbs2.adapter.orchestrator.josm.tigo.com.hn/" name="CBSQueryCustomerInfoTaskService">
+<types>
+<xsd:schema>
+<xsd:import namespace="http://task.cbs2.adapter.orchestrator.josm.tigo.com.hn/" schemaLocation="http://192.168.128.50:7004/CBSQueryCustomerInfoTask/CBSQueryCustomerInfoTaskService?xsd=1"/>
+</xsd:schema>
+<xsd:schema>
+<xsd:import namespace="http://adapter.josm.tigo.com.hn/RequestType/V1" schemaLocation="http://192.168.128.50:7004/CBSQueryCustomerInfoTask/CBSQueryCustomerInfoTaskService?xsd=2"/>
+</xsd:schema>
+<xsd:schema>
+<xsd:import namespace="http://tigo.com/enterprise/resources/parameters/simple/v1/schema" schemaLocation="http://192.168.128.50:7004/CBSQueryCustomerInfoTask/CBSQueryCustomerInfoTaskService?xsd=3"/>
+</xsd:schema>
+</types>
+<message name="executeTask">
+<part name="parameters" element="tns:executeTask"/>
+</message>
+<message name="executeTaskResponse">
+<part name="parameters" element="tns:executeTaskResponse"/>
+</message>
+<message name="AdapterException">
+<part name="fault" element="tns:AdapterException"/>
+</message>
+<portType name="CBSQueryCustomerInfoTask">
+<operation name="executeTask">
+<input wsam:Action="http://task.cbs2.adapter.orchestrator.josm.tigo.com.hn/CBSQueryCustomerInfoTask/executeTaskRequest" message="tns:executeTask"/>
+<output wsam:Action="http://task.cbs2.adapter.orchestrator.josm.tigo.com.hn/CBSQueryCustomerInfoTask/executeTaskResponse" message="tns:executeTaskResponse"/>
+<fault message="tns:AdapterException" name="AdapterException" wsam:Action="http://task.cbs2.adapter.orchestrator.josm.tigo.com.hn/CBSQueryCustomerInfoTask/executeTask/Fault/AdapterException"/>
+</operation>
+</portType>
+<binding name="CBSQueryCustomerInfoTaskPortBinding" type="tns:CBSQueryCustomerInfoTask">
+<soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+<operation name="executeTask">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+<fault name="AdapterException">
+<soap:fault name="AdapterException" use="literal"/>
+</fault>
+</operation>
+</binding>
+<service name="CBSQueryCustomerInfoTaskService">
+<port name="CBSQueryCustomerInfoTaskPort" binding="tns:CBSQueryCustomerInfoTaskPortBinding">
+<soap:address location="http://192.168.128.50:7004/CBSQueryCustomerInfoTask/CBSQueryCustomerInfoTaskService"/>
+</port>
+</service>
+</definitions>

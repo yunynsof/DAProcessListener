@@ -9,13 +9,13 @@ import javax.xml.transform.TransformerFactoryConfigurationError;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+
 /**
  * DAProcessDaemon.
  *
- * @author Yuny Rene Rodriguez Perez <mailto: yrodriguez@hightech-corp.com />
- * @version 
- * @see 
- * @since 07-11-2022 12:44:15 PM 2022
+ * @author Yuny Rene Rodriguez Perez {@literal<mailto: yrodriguez@hightech-corp.com />}
+ * @version  1.0.0
+ * @since 08-30-2022 11:21:02 AM 2022
  */
 @Singleton
 @Startup

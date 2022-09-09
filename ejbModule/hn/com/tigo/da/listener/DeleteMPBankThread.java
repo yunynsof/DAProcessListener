@@ -32,18 +32,33 @@ import hn.com.tigo.josm.persistence.core.ServiceSessionEJB;
 import hn.com.tigo.josm.persistence.core.ServiceSessionEJBLocal;
 import hn.com.tigo.josm.persistence.exception.PersistenceException;
 
+/**
+ * DeleteMPBankThread.
+ *
+ * @author Yuny Rene Rodriguez Perez {@literal<mailto: yrodriguez@hightech-corp.com />}
+ * @version  1.0.0
+ * @since 08-30-2022 11:21:19 AM 2022
+ */
 public class DeleteMPBankThread extends Thread {
 
+	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LogManager.getLogger(DeleteMPBankThread.class);
 
+	/** The executor service. */
 	private ThreadPoolExecutor executorService;
 
+	/** The working queue. */
 	private BlockingQueue<Runnable> workingQueue;
 
+	/** The state. */
 	private States state;
 
+	/** The config params. */
 	private HashMap<String, String> configParams;
 
+	/**
+	 * Instantiates a new delete MP bank thread.
+	 */
 	public DeleteMPBankThread() {
 		try {
 			initialize();
@@ -53,6 +68,9 @@ public class DeleteMPBankThread extends Thread {
 		}
 	}
 
+	/**
+	 * Initialize.
+	 */
 	public void initialize() {
 		workingQueue = new ArrayBlockingQueue<Runnable>(100);
 		LOGGER.info("workingQueue correctly");
@@ -61,11 +79,17 @@ public class DeleteMPBankThread extends Thread {
 		LOGGER.info("Iinitialize Finalized.");
 	}
 
+	/**
+	 * Shutdown.
+	 */
 	public void shutdown() {
 		state = States.SHUTTINGDOWN;
 		executorService.shutdownNow();
 	}
 
+	/**
+	 * Run.
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void run() {
@@ -243,6 +267,11 @@ public class DeleteMPBankThread extends Thread {
 
 	}
 
+	/**
+	 * Sleep thread.
+	 *
+	 * @param milliSecounds the milli secounds
+	 */
 	private void sleepThread(final int milliSecounds) {
 		try {
 			Thread.sleep(milliSecounds);
@@ -251,6 +280,12 @@ public class DeleteMPBankThread extends Thread {
 		}
 	}
 
+	/**
+	 * Obtain parameters.
+	 *
+	 * @param accountCode the account code
+	 * @return the list
+	 */
 	private List<Parameter> obtainParameters(String accountCode) {
 
 		List<Parameter> parameter = new ArrayList<Parameter>();
